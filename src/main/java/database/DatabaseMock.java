@@ -1,5 +1,6 @@
 package database;
 
+import backend.model.Contact;
 import logging.CustomLogger;
 import backend.model.Contact;
 
