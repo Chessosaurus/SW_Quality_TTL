@@ -6,12 +6,12 @@ import database.DatabaseMock;
 import java.util.List;
 import java.util.Optional;
 
-public class DatabaseConnection {
+public class DatabaseConnection{
     DataBaseController db;
     public DatabaseConnection(){
         db = new DatabaseMock();
     }
-    Optional<Contact> getContactWithId(int id) {
+    public Optional<Contact> getContactWithId(int id) {
         return db.getContactWithId(id);
     }
 

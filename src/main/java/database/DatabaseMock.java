@@ -1,6 +1,7 @@
 package database;
 
 import backend.Contact;
+import logging.CustomLogger;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class DatabaseMock implements DataBaseController {
 
     public DatabaseMock() {
         this.csvFilePath = "src/main/java/database/data.csv";
-        nextId = getLastEntryId() + 1;
+        nextId = getIdOfLastEntry() + 1;
     }
     /**
      * Searches the CSV File for a Contact
@@ -30,6 +31,7 @@ public class DatabaseMock implements DataBaseController {
                 return Optional.of(contact);
             }
         }
+        CustomLogger.warning("Contact with id " + id + " not found");
         return Optional.empty();
     }
     /**
@@ -47,8 +49,9 @@ public class DatabaseMock implements DataBaseController {
                 contact.setId(nextId++);
                 writer.write(toCSV(contact));
                 writer.newLine();
+                CustomLogger.log("Added contact " + contact.getId());
             } catch (IOException e) {
-                e.printStackTrace();
+                CustomLogger.error("Error while reading file: " + csvFilePath);
             }
         }
     }
@@ -70,8 +73,9 @@ public class DatabaseMock implements DataBaseController {
                 }
                 writer.newLine();
             }
+            CustomLogger.log("Updated contact " + updateContact.getId());
         } catch (IOException e) {
-            e.printStackTrace();
+            CustomLogger.error("Error while reading file: " + csvFilePath);
         }
     }
     /**
@@ -92,22 +96,22 @@ public class DatabaseMock implements DataBaseController {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            CustomLogger.error("Error while reading file: " + csvFilePath);
         }
         return contacts;
     }
 
-    // Method to create String from Contact
+
     private String toCSV(Contact contact) {
         String titles = String.join("|", contact.getTitle()); // Assuming titles are separated by "|"
         return contact.getId() + "," + contact.getFirstName() + "," + contact.getLastName() + "," + titles + "," + contact.getGender() + "," + contact.getLanguage() + "," + contact.getSalutation();
     }
 
-    // Method to create Contact from CSV format
     private static Contact fromCSV(String csvLine) {
         String[] parts = csvLine.split(",");
         if (parts.length != 7) {
-            return null; // Invalid CSV format
+            CustomLogger.error("Wrong number of columns in CSV: " + csvLine);
+            return null;
         }
         int id = Integer.parseInt(parts[0]);
         String firstName = parts[1];
@@ -119,7 +123,7 @@ public class DatabaseMock implements DataBaseController {
         return new Contact(id, firstName, lastName, titles, gender, language, salutation);
     }
 
-    private int getLastEntryId() {
+    private int getIdOfLastEntry() {
         int lastId = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
             String line;
