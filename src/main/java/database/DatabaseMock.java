@@ -1,6 +1,5 @@
 package database;
 
-import backend.Contact;
 import logging.CustomLogger;
 import backend.model.Contact;
 
@@ -52,7 +51,7 @@ public class DatabaseMock implements DataBaseController {
                 writer.newLine();
                 CustomLogger.log("Added contact " + contact.getId());
             } catch (IOException e) {
-                CustomLogger.error("Error while reading file: " + csvFilePath);
+                CustomLogger.error("Error while reading file: " + csvFilePath + "\t to add contact " + contact.getId());
             }
         }
     }
@@ -76,7 +75,7 @@ public class DatabaseMock implements DataBaseController {
             }
             CustomLogger.log("Updated contact " + updateContact.getId());
         } catch (IOException e) {
-            CustomLogger.error("Error while reading file: " + csvFilePath);
+            CustomLogger.error("Error while reading file: " + csvFilePath + "\t to update contact" + updateContact.getId());
         }
     }
     /**
@@ -97,7 +96,7 @@ public class DatabaseMock implements DataBaseController {
                 }
             }
         } catch (IOException e) {
-            CustomLogger.error("Error while reading file: " + csvFilePath);
+            CustomLogger.error("Error while reading file: " + csvFilePath + "\t to get all contacts");
         }
         return contacts;
     }
@@ -135,7 +134,7 @@ public class DatabaseMock implements DataBaseController {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            CustomLogger.error("Error while reading file: " + csvFilePath + "\tfor the last entry id");
         }
         return lastId;
     }
@@ -151,7 +150,7 @@ public class DatabaseMock implements DataBaseController {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            CustomLogger.error("Error while reading file: " + csvFilePath + "\tfor the id check");
         }
         return false;
     }
