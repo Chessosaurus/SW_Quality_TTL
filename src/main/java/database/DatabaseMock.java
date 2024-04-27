@@ -15,7 +15,13 @@ public class DatabaseMock implements DataBaseController {
         this.csvFilePath = "src/main/java/database/data.csv";
         nextId = getLastEntryId() + 1;
     }
-
+    /**
+     * Searches the CSV File for a Contact
+     * <p>
+     * This Method always returns a Value and never null
+     * @param id id of the contact to search for
+     * @return Optional.of(Contact) or Optional.empty()
+     */
     @Override
     public Optional<Contact> getContactWithId(int id) {
         List<Contact> contacts = getAllContacts();
@@ -26,27 +32,41 @@ public class DatabaseMock implements DataBaseController {
         }
         return Optional.empty();
     }
-
+    /**
+     * Adds or updates a Contact to the CSV File
+     * <p>
+     * If the Contact exists already it instead updates the contact
+     * @param contact The contact to add to the Database
+     */
     @Override
     public void addContact(Contact contact) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath, true))) {
-            contact.setId(nextId++);
-            writer.write(toCSV(contact));
-            writer.newLine();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (containsId(contact.getId())) {
+            updateContact(contact);
+        } else {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath, true))) {
+                contact.setId(nextId++);
+                writer.write(toCSV(contact));
+                writer.newLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
-
+    /**
+     * Updates an entry in the CSV File
+     * <p>
+     * If there is no user with the given id, nothing happens
+     * @param  updateContact  the contact that needs its values updates
+     */
     @Override
-    public void updateContact(Contact updatedModel) {
-        List<Contact> models = getAllContacts();
+    public void updateContact(Contact updateContact) {
+        List<Contact> contacts = getAllContacts();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath))) {
-            for (Contact model : models) {
-                if (model.getId() == updatedModel.getId()) {
-                    writer.write(toCSV(updatedModel));
+            for (Contact contact : contacts) {
+                if (contact.getId() == updateContact.getId()) {
+                    writer.write(toCSV(updateContact));
                 } else {
-                    writer.write(toCSV(model));
+                    writer.write(toCSV(contact));
                 }
                 writer.newLine();
             }
@@ -54,7 +74,12 @@ public class DatabaseMock implements DataBaseController {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Searches the CSV for all Contacts
+     * <p>
+     * This Method always returns a List
+     * @return List<Contact> Contains all values of the CSV File
+     */
     @Override
     public List<Contact> getAllContacts() {
         List<Contact> contacts = new ArrayList<>();
@@ -91,7 +116,7 @@ public class DatabaseMock implements DataBaseController {
         String gender = parts[4];
         String language = parts[5];
         String salutation = parts[6];
-        return new Contact(id,firstName, lastName, titles, gender, language, salutation);
+        return new Contact(id, firstName, lastName, titles, gender, language, salutation);
     }
 
     private int getLastEntryId() {
@@ -99,14 +124,30 @@ public class DatabaseMock implements DataBaseController {
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                Contact model = fromCSV(line);
-                if (model != null && model.getId() > lastId) {
-                    lastId = model.getId();
+                Contact contact = fromCSV(line);
+                if (contact != null && contact.getId() > lastId) {
+                    lastId = contact.getId();
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return lastId;
+    }
+
+    private boolean containsId(int id) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Contact contact = fromCSV(line);
+                assert contact != null;
+                if (contact.getId() == id) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

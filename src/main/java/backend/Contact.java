@@ -29,6 +29,7 @@ public class Contact {
         this.language = language;
         this.salutation = salutation;
     }
+
     public Contact(int id,String firstName, String lastName, List<String> title, String gender, String language, String salutation) {
         this.id = id;
         this.firstName = firstName;
