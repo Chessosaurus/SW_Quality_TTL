@@ -11,6 +11,7 @@ public class Contact {
     String gender;
     String language;
     String salutation;
+    String letterSalutation;
 
     public Contact(){
         this.firstName = "";
@@ -92,6 +93,14 @@ public class Contact {
         return salutation;
     }
 
+    public void setSalutation(String salutation) {
+        this.salutation = salutation;
+    }
+
+    public void setLetterSalutation(String salutation) {
+        this.salutation = salutation;
+    }
+
     public void addTitle(String title) {
         this.titles.add(title);
     }
@@ -100,7 +109,9 @@ public class Contact {
         this.titles.remove(title);
     }
 
-    public void setSalutation(String salutation) {
-        this.salutation = salutation;
+
+    public String getLetterSalutation() {
+        return letterSalutation;
     }
+
 }

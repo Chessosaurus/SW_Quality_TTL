@@ -22,6 +22,7 @@ public class InputConverter {
     List<String> english;
     List<String> prefixes;
     List<String> connectors;
+    List<String> salutation;
 
     /**
      * Constructor for InputConverter. Initializes lists with predefined values for genders, titles, languages,
@@ -38,6 +39,7 @@ public class InputConverter {
         String[] englishLanguage = {"Mr.", "Mr", "Mister", "Mrs.", "Mrs", "Mme.", "Mme", "Mx.", "Mx"};
         String[] prefixesValueInit = {"van", "von", "der", "de", "y"};
         String[] connectorsValueInit = {"von", "vom"};
+        String[] salutationValueInit = {"Herr", "Mr.", "Mr", "Mister","Frau", "Mrs.", "Mrs", "Mme.", "Mme"};
         maleGenders = Arrays.asList(maleInitValues);
         femaleGenders = Arrays.asList(femaleInitValues);
         diversGenders = Arrays.asList(diversInitValues);
@@ -46,6 +48,7 @@ public class InputConverter {
         english = Arrays.asList(englishLanguage);
         prefixes = Arrays.asList(prefixesValueInit);
         connectors = Arrays.asList(connectorsValueInit);
+        salutation = Arrays.asList(salutationValueInit);
     }
 
     /**
@@ -70,6 +73,7 @@ public class InputConverter {
 
         Contact contact = new Contact();
         if (splittedInput.length != 1) {
+            contact.setSalutation(findSalutation(splittedInput[0]));
             contact.setGender(findGender(splittedInput[0]));
             contact.setLanguage(splittedInput[0]);
             contact.setTitles(findTitles(splittedInput));
@@ -84,6 +88,12 @@ public class InputConverter {
         return contact;
     }
 
+
+
+    private String findSalutation(String input) {
+        if (salutation.contains(input)) return input;
+        else return "";
+    }
     /**
      * Determines the gender based on a given input string by checking it against predefined lists.
      * <p>
@@ -93,8 +103,12 @@ public class InputConverter {
     public String findGender(String input) {
         if (maleGenders.contains(input)) return "m";
         else if (femaleGenders.contains(input)) return "f";
-        else return "x";
+        else return "d";
     }
+
+
+
+
 
     /**
      * Determines the language from a given input string based on predefined language identifiers.
