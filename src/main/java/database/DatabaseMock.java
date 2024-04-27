@@ -7,16 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class DatabaseMock implements DataBaseController{
+public class DatabaseMock implements DataBaseController {
     private String csvFilePath;
+    private int nextId;
 
     public DatabaseMock() {
-        this.csvFilePath = "database/data.csv";
+        this.csvFilePath = "src/main/java/database/data.csv";
+        nextId = getLastEntryId() + 1;
     }
 
     @Override
-    public Optional<Contact> getModelWithId(int id) {
-        List<Contact> contacts = getAllModels();
+    public Optional<Contact> getContactWithId(int id) {
+        List<Contact> contacts = getAllContacts();
         for (Contact contact : contacts) {
             if (contact.getId() == id) {
                 return Optional.of(contact);
@@ -26,9 +28,10 @@ public class DatabaseMock implements DataBaseController{
     }
 
     @Override
-    public void addModel(Contact contact) {
+    public void addContact(Contact contact) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath, true))) {
-            writer.write(toCSV());
+            contact.setId(nextId++);
+            writer.write(toCSV(contact));
             writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
@@ -36,13 +39,24 @@ public class DatabaseMock implements DataBaseController{
     }
 
     @Override
-    public void updateModel(Contact contact) {
-        // For simplicity, assuming updating in CSV means adding again
-        addModel(contact);
+    public void updateContact(Contact updatedModel) {
+        List<Contact> models = getAllContacts();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath))) {
+            for (Contact model : models) {
+                if (model.getId() == updatedModel.getId()) {
+                    writer.write(toCSV(updatedModel));
+                } else {
+                    writer.write(toCSV(model));
+                }
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public List<Contact> getAllModels() {
+    public List<Contact> getAllContacts() {
         List<Contact> contacts = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
             String line;
@@ -57,13 +71,15 @@ public class DatabaseMock implements DataBaseController{
         }
         return contacts;
     }
-    public String toCSV(Contact m) {
-        String titles = String.join("|", m.getTitles()); // Assuming titles are separated by "|"
-        return m.getId() + "," + m.getfirstName() + "," + m.getlastName() + "," + titles + "," + m.getgender() + "," + m.getlanguage() + "," + m.getsalutation();
+
+    // Method to create String from Contact
+    private String toCSV(Contact contact) {
+        String titles = String.join("|", contact.getTitle()); // Assuming titles are separated by "|"
+        return contact.getId() + "," + contact.getFirstName() + "," + contact.getLastName() + "," + titles + "," + contact.getGender() + "," + contact.getLanguage() + "," + contact.getSalutation();
     }
 
-    // Method to create Model from CSV format
-    public static Contact fromCSV(String csvLine) {
+    // Method to create Contact from CSV format
+    private static Contact fromCSV(String csvLine) {
         String[] parts = csvLine.split(",");
         if (parts.length != 7) {
             return null; // Invalid CSV format
@@ -75,6 +91,22 @@ public class DatabaseMock implements DataBaseController{
         String gender = parts[4];
         String language = parts[5];
         String salutation = parts[6];
-        return new Contact(id, firstName, lastName, titles, gender, language, salutation);
+        return new Contact(id,firstName, lastName, titles, gender, language, salutation);
+    }
+
+    private int getLastEntryId() {
+        int lastId = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvFilePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Contact model = fromCSV(line);
+                if (model != null && model.getId() > lastId) {
+                    lastId = model.getId();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lastId;
     }
 }
