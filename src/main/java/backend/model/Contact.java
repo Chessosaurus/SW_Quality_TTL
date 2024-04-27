@@ -31,7 +31,7 @@ public class Contact {
         this.salutation = salutation;
     }
 
-    public Contact(int id,String firstName, String lastName, List<String> title, String gender, String language, String salutation) {
+    public Contact(int id,String firstName, String lastName, List<String> title, String gender, String language, String salutation, String letterSalutation) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -39,6 +39,7 @@ public class Contact {
         this.gender = gender;
         this.language = language;
         this.salutation = salutation;
+        this.letterSalutation = letterSalutation;
     }
 
     public int getId() {

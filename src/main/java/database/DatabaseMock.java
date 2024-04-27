@@ -110,7 +110,7 @@ public class DatabaseMock implements DataBaseController {
 
     private static Contact fromCSV(String csvLine) {
         String[] parts = csvLine.split(",");
-        if (parts.length != 7) {
+        if (parts.length != 8) {
             CustomLogger.error("Wrong number of columns in CSV: " + csvLine);
             return null;
         }
@@ -121,7 +121,8 @@ public class DatabaseMock implements DataBaseController {
         String gender = parts[4];
         String language = parts[5];
         String salutation = parts[6];
-        return new Contact(id, firstName, lastName, titles, gender, language, salutation);
+        String letterSalutation = parts[7];
+        return new Contact(id, firstName, lastName, titles, gender, language, salutation,letterSalutation);
     }
 
     private int getIdOfLastEntry() {
