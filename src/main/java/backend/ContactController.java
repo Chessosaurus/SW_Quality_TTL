@@ -5,18 +5,14 @@ import backend.converter.SalutationBuilder;
 import backend.model.Contact;
 import frontend.View;
 
+import java.security.cert.CertPath;
 import java.util.List;
 
 public class ContactController {
 
-    DatabaseConnection databaseConnection;
-    InputConverter contactConverter;
+    DatabaseConnection databaseConnection = new DatabaseConnection();
+    InputConverter contactConverter = new InputConverter();
     SalutationBuilder salutationBuilder = new SalutationBuilder();
-
-    public ContactController() {
-        DatabaseConnection databaseConnection = new DatabaseConnection();
-        InputConverter contactConverter = new InputConverter();
-    }
 
     private void checkInput(String in) throws WrongInputException{
         //digitCheck with regex
