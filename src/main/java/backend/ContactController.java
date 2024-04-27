@@ -1,16 +1,15 @@
 package backend;
 
-import database.DataBaseController;
-import database.DatabaseMock;
 import frontend.View;
 
-import java.security.cert.CertPath;
 import java.util.List;
+import java.util.Optional;
 
 public class ContactController {
 
     DatabaseConnection databaseConnection;
     InputConverter contactConverter;
+    SalutationBuilder salutationBuilder = new SalutationBuilder();
 
     public ContactController() {
         DatabaseConnection databaseConnection = new DatabaseConnection();
@@ -26,7 +25,9 @@ public class ContactController {
 
     public Contact converToContact(String input) throws WrongInputException{
         checkInput(input);
-        return contactConverter.convert(input);
+        Contact contact = contactConverter.convert(input);
+        salutationBuilder.createSalutation(contact);
+        return contact;
     }
 
      public void saveContact(Contact contact){
@@ -37,6 +38,9 @@ public class ContactController {
         return databaseConnection.getAllContacts();
     }
 
+    public void updateSalutation(Contact contact){
+        salutationBuilder.createSalutation(contact);
+    }
 
     public static void main(String[] args) {
         View home = new View();

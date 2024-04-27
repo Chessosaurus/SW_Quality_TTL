@@ -7,7 +7,7 @@ public class Contact {
     int id;
     String firstName;
     String lastName;
-    List<String> title;
+    List<String> titles;
     String gender;
     String language;
     String salutation;
@@ -15,7 +15,7 @@ public class Contact {
     public Contact(){
         this.firstName = "";
         this.lastName = "";
-        this.title = new ArrayList<>();
+        this.titles = new ArrayList<>();
         this.gender = "";
         this.language = "";
         this.salutation = "";
@@ -24,7 +24,7 @@ public class Contact {
     public Contact(String firstName, String lastName, List<String> title, String gender, String language, String salutation) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.title = title;
+        this.titles = title;
         this.gender = gender;
         this.language = language;
         this.salutation = salutation;
@@ -34,7 +34,7 @@ public class Contact {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.title = title;
+        this.titles = title;
         this.gender = gender;
         this.language = language;
         this.salutation = salutation;
@@ -56,12 +56,12 @@ public class Contact {
         this.firstName = firstName;
     }
 
-    public List<String> getTitle() {
-        return title;
+    public List<String> getTitles() {
+        return titles;
     }
 
-    public void setTitle(List<String> title) {
-        this.title = title;
+    public void setTitles(List<String> title) {
+        this.titles = title;
     }
 
     public String getLastName() {
@@ -90,6 +90,14 @@ public class Contact {
 
     public String getSalutation() {
         return salutation;
+    }
+
+    public void addTitle(String title) {
+        this.titles.add(title);
+    }
+
+    public void removeTitle(String title) {
+        this.titles.remove(title);
     }
 
     public void setSalutation(String salutation) {

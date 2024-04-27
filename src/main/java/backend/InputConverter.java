@@ -70,7 +70,7 @@ public class InputConverter {
         if (splittedInput.length != 1) {
             contact.setGender(findGender(splittedInput[0]));
             contact.setLanguage(splittedInput[0]);
-            contact.setTitle(findTitles(splittedInput));
+            contact.setTitles(findTitles(splittedInput));
             String[] names = findNames(splittedInput);
             contact.setFirstName(names[0]);
             contact.setLastName(names[1]);

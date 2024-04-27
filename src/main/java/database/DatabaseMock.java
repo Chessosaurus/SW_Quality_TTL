@@ -99,7 +99,7 @@ public class DatabaseMock implements DataBaseController {
 
     // Method to create String from Contact
     private String toCSV(Contact contact) {
-        String titles = String.join("|", contact.getTitle()); // Assuming titles are separated by "|"
+        String titles = String.join("|", contact.getTitles()); // Assuming titles are separated by "|"
         return contact.getId() + "," + contact.getFirstName() + "," + contact.getLastName() + "," + titles + "," + contact.getGender() + "," + contact.getLanguage() + "," + contact.getSalutation();
     }
 
