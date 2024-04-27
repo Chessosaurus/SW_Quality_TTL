@@ -2,6 +2,7 @@ package database;
 
 import backend.Contact;
 import logging.CustomLogger;
+import backend.model.Contact;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -103,7 +104,7 @@ public class DatabaseMock implements DataBaseController {
 
 
     private String toCSV(Contact contact) {
-        String titles = String.join("|", contact.getTitle()); // Assuming titles are separated by "|"
+        String titles = String.join("|", contact.getTitles()); // Assuming titles are separated by "|"
         return contact.getId() + "," + contact.getFirstName() + "," + contact.getLastName() + "," + titles + "," + contact.getGender() + "," + contact.getLanguage() + "," + contact.getSalutation();
     }
 
