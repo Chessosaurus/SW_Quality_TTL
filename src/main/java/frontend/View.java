@@ -9,19 +9,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumnModel;
 
 public class View extends JFrame {
     // Instanzvariablen für Eingabefelder
-    private JTextField anredeField;
-    private JTextField titelField;
-    private JTextField vornameField;
-    private JTextField nachnameField;
-    private JComboBox<String> geschlechtComboBox;
-    private JComboBox<String> spracheComboBox;
-
+    private JTextField salutationField;
+    private JTextField titleField;
+    private JTextField firstnameField;
+    private JTextField lastnameField;
+    private JComboBox<String> genderComboBox;
+    private JComboBox<String> languageComboBox;
     private ContactController contactController;
     private Contact contact;
     JButton previewButton;
@@ -56,17 +52,17 @@ public class View extends JFrame {
 
         for (int i = 0; i < 6; i++) {
             if (i == 4) { // Falls es das letzte Feld ist (Index 4)
-                geschlechtComboBox = new JComboBox<>(new String[]{"keine Angabe", "männlich", "weiblich", "divers"}); // Erstelle eine Dropdown-Liste mit den Geschlechts-Optionen
+                genderComboBox = new JComboBox<>(new String[]{"keine Angabe", "männlich", "weiblich", "divers"}); // Erstelle eine Dropdown-Liste mit den Geschlechts-Optionen
                 JLabel label = new JLabel(labels[i], SwingConstants.RIGHT); // Rechtsbündig ausgerichtetes Label
                 label.setBorder(BorderFactory.createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right)); // Setze das Padding für das Label
                 boxPanel.add(label); // Füge das Label hinzu
-                boxPanel.add(geschlechtComboBox); // Füge die Dropdown-Liste hinzu
+                boxPanel.add(genderComboBox); // Füge die Dropdown-Liste hinzu
             } else if (i == 5) {
-                spracheComboBox = new JComboBox<>(new String[]{"Deutsch", "Englisch"}); // Erstelle eine Dropdown-Liste mit den Geschlechts-Optionen
+                languageComboBox = new JComboBox<>(new String[]{"Deutsch", "Englisch"}); // Erstelle eine Dropdown-Liste mit den Geschlechts-Optionen
                 JLabel label = new JLabel(labels[i], SwingConstants.RIGHT); // Rechtsbündig ausgerichtetes Label
                 label.setBorder(BorderFactory.createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right)); // Setze das Padding für das Label
                 boxPanel.add(label); // Füge das Label hinzu
-                boxPanel.add(spracheComboBox); // Füge die Dropdown-Liste hinzu
+                boxPanel.add(languageComboBox); // Füge die Dropdown-Liste hinzu
             } else {
                 JTextField textField = new JTextField(10); // Erstelle das Textfeld
                 JLabel label = new JLabel(labels[i], SwingConstants.RIGHT); // Rechtsbündig ausgerichtetes Label
@@ -77,16 +73,16 @@ public class View extends JFrame {
                 // Setter für jedes Textfeld
                 switch (i) {
                     case 0:
-                        anredeField = textField;
+                        salutationField = textField;
                         break;
                     case 1:
-                        titelField = textField;
+                        titleField = textField;
                         break;
                     case 2:
-                        vornameField = textField;
+                        firstnameField = textField;
                         break;
                     case 3:
-                        nachnameField = textField;
+                        lastnameField = textField;
                         break;
                 }
             }
@@ -133,12 +129,12 @@ public class View extends JFrame {
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                contact.setSalutation(anredeField.getText());
-                contact.setTitles(Arrays.asList(titelField.getText().split(", ")));
-                contact.setFirstName(vornameField.getText());
-                contact.setLastName(nachnameField.getText());
-                contact.setGender(geschlechtComboBox.getSelectedItem().toString());
-                contact.setLanguage(spracheComboBox.getSelectedItem().toString());
+                contact.setSalutation(salutationField.getText());
+                contact.setTitles(Arrays.asList(titleField.getText().split(", ")));
+                contact.setFirstName(firstnameField.getText());
+                contact.setLastName(lastnameField.getText());
+                contact.setGender(genderComboBox.getSelectedItem().toString());
+                contact.setLanguage(languageComboBox.getSelectedItem().toString());
                 System.out.println(contact);
                 contactController.saveContact(contact);
                 clearFields();
@@ -147,7 +143,7 @@ public class View extends JFrame {
         previewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                outputArea.setText(contact.getLetterSalutation());
             }
         });
 
@@ -169,27 +165,27 @@ public class View extends JFrame {
 
     // Setter für jedes Eingabefeld, akzeptiert Strings als Parameter
     public void setAnredeField(String text) {
-        anredeField.setText(text);
+        salutationField.setText(text);
     }
 
     public void setTitelField(String text) {
-        titelField.setText(text);
+        titleField.setText(text);
     }
 
     public void setVornameField(String text) {
-        vornameField.setText(text);
+        firstnameField.setText(text);
     }
 
     public void setNachnameField(String text) {
-        nachnameField.setText(text);
+        lastnameField.setText(text);
     }
 
     public void setGeschlechtComboBox(String value) {
-        geschlechtComboBox.setSelectedItem(value);
+        genderComboBox.setSelectedItem(value);
     }
 
     public void setSpracheComboBox(String value) {
-        spracheComboBox.setSelectedItem(value);
+        languageComboBox.setSelectedItem(value);
     }
     public void clearFields(){
         setAnredeField("");
