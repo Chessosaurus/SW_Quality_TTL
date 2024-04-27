@@ -23,7 +23,7 @@ public class SalutationBuilder {
             baseSalutation = createEnglishSalutation(contact.getGender(), title);
         }
 
-        contact.setLetterSalutation(baseSalutation + " " + contact.getFirstName() + ",");
+        contact.setLetterSalutation(baseSalutation + " " + contact.getLastName() + ",");
     }
 
     private String createGermanSalutation(String gender, String title) {
