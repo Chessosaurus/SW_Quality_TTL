@@ -8,6 +8,7 @@ import java.util.List;
  * This class serves as a converter for processing names and titles from string input.
  * It initializes and maintains lists of gender-specific terms, titles, prefixes, and connectors
  * to aid in parsing and converting names from various formats.
+ * <p>
  */
 public class InputConverter {
 
@@ -23,9 +24,10 @@ public class InputConverter {
     /**
      * Constructor for InputConverter. Initializes lists with predefined values for genders, titles, languages,
      * prefixes, and connectors.
+     * <p>
      */
     public InputConverter() {
-        //Initializing Prerequesites
+        //Initializing Prerequisites
         String[] maleInitValues = {"Herr", "Mr.", "Mr", "Mister"};
         String[] femaleInitValues = {"Frau", "Mrs.", "Mrs", "Mme.", "Mme"};
         String[] diversInitValues = {"Mx.", "Mx"};
@@ -46,7 +48,7 @@ public class InputConverter {
 
     /**
      * Adds a new title to the list of recognized titles if it is not already present.
-     *
+     * <p>
      * @param newTitle The title to be added.
      */
     public void addTitle(String newTitle) {
@@ -56,7 +58,7 @@ public class InputConverter {
     /**
      * Converts a single string input into a Contact object by splitting the input and determining
      * the gender, language, titles, and names of the individual.
-     *
+     * <p>
      * @param input The string input to be converted.
      * @return A Contact object populated with the extracted details from the input.
      */
@@ -82,7 +84,7 @@ public class InputConverter {
 
     /**
      * Determines the gender based on a given input string by checking it against predefined lists.
-     *
+     * <p>
      * @param input The string part to be analyzed for gender.
      * @return A single character string representing male ('m'), female ('f'), or undetermined ('x').
      */
@@ -94,7 +96,7 @@ public class InputConverter {
 
     /**
      * Determines the language from a given input string based on predefined language identifiers.
-     *
+     * <p>
      * @param input input The string part to be analyzed for language.
      * @return The ISO code for the detected language, or 'undefined' if not found.
      */
@@ -105,11 +107,11 @@ public class InputConverter {
     }
 
     /**
-     * Parses an array of string inputs to extract and separate potential prenames and surnames.
+     * Parses an array of string inputs to extract and separate potential firstnames and lastnames.
      * Handles names with prefixes and connectors appropriately.
-     *
+     * <p>
      * @param input An array of strings representing different parts of a full name.
-     * @return A string array where index 0 contains the prename and index 1 contains the surname.
+     * @return A string array where index 0 contains the firstname and index 1 contains the lastname.
      */
     public String[] findNames(String[] input) {
         String[] nameTuple = {"", ""};
@@ -131,11 +133,11 @@ public class InputConverter {
     }
 
     /**
-     * Processes a list of potential names and connectors to determine the correct prename and surname.
-     *
+     * Processes a list of potential names and connectors to determine the correct firstname and lastname.
+     * <p>
      * @param names A list of potential names.
      * @param connectors A list of recognized connectors.
-     * @param nameTuple A string array where the prename and surname will be stored.
+     * @param nameTuple A string array where the firstname and lastname will be stored.
      */
     private void processNames(List<String> names, List<String> connectors, String[] nameTuple) {
         if (names.size() == 2) {
@@ -150,10 +152,10 @@ public class InputConverter {
 
     /**
      * Constructs a full name from parts, combining recognized names with connectors when applicable.
-     *
+     * <p>
      * @param names A list of names that might include parts to be combined.
      * @param connectors A list of strings that signify connectors between name parts.
-     * @param nameTuple A string array to hold the resulting prename and surname.
+     * @param nameTuple A string array to hold the resulting firstname and lastname.
      */
     private void buildNameFromParts(List<String> names, List<String> connectors, String[] nameTuple) {
         List<String> combinedNames = new ArrayList<>();
@@ -175,7 +177,7 @@ public class InputConverter {
 
     /**
      * Checks if a given part of the input is recognized as a gender term or a title.
-     *
+     * <p>
      * @param part The string to check against known genders and titles.
      * @return true if the string matches a known gender or title, false otherwise.
      */
@@ -189,7 +191,7 @@ public class InputConverter {
 
     /**
      * Extracts titles from an array of input strings, combining adjacent titles into a single title string where applicable.
-     *
+     * <p>
      * @param input An array of strings, each potentially a part of a title.
      * @return A list of extracted and combined titles.
      */
@@ -203,7 +205,7 @@ public class InputConverter {
                 i = findComplexTitle(input, generatedTitles, i, "Prof. Dr.");
             } else if (input[i].equals("Dr.")) {
                 i = findComplexTitle(input, generatedTitles, i, "Dr.");
-            } else if ((input[i].matches("[a-zA-Z]+\\,") && !maleGenders.contains(input[i]))
+            } else if ((input[i].matches("[a-zA-Z]+,") && !maleGenders.contains(input[i]))
                     && !femaleGenders.contains(input[i])
                     && !diversGenders.contains(input[i])
                     || titles.contains(input[i])) {
@@ -216,7 +218,7 @@ public class InputConverter {
 
     /**
      * Supports the findTitles method by combining consecutive title parts into complex titles.
-     *
+     * <p>
      * @param inputParts An array of title parts.
      * @param titles A list to store combined titles.
      * @param currentIndex The current index in the input parts array being processed.
@@ -227,7 +229,7 @@ public class InputConverter {
         StringBuilder titleBuilder = new StringBuilder(currentTitle);
 
         for (int nestIndex = currentIndex + 1; nestIndex < inputParts.length; nestIndex++) {
-            if (inputParts[nestIndex].matches("[A-Za-z]+\\,")) {
+            if (inputParts[nestIndex].matches("[A-Za-z]+,")) {
                 titleBuilder.append(" ").append(inputParts[nestIndex]);
             } else {
                 currentIndex = nestIndex - 1;
