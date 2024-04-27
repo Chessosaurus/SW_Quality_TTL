@@ -1,5 +1,6 @@
 package backend;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Contact {
@@ -10,6 +11,15 @@ public class Contact {
     String gender;
     String language;
     String salutation;
+
+    public Contact(){
+        this.firstName = "";
+        this.lastName = "";
+        this.title = new ArrayList<>();
+        this.gender = "";
+        this.language = "";
+        this.salutation = "";
+    }
 
     public Contact(String firstName, String lastName, List<String> title, String gender, String language, String salutation) {
         this.firstName = firstName;
