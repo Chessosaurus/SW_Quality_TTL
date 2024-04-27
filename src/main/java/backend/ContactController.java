@@ -5,7 +5,6 @@ import backend.converter.SalutationBuilder;
 import backend.model.Contact;
 import frontend.View;
 
-import java.security.cert.CertPath;
 import java.util.List;
 
 public class ContactController {
@@ -21,7 +20,7 @@ public class ContactController {
         }
     }
 
-    public Contact converToContact(String input) throws WrongInputException{
+    public Contact convertToContact(String input) throws WrongInputException{
         checkInput(input);
         Contact contact = contactConverter.convert(input);
         salutationBuilder.createSalutation(contact);

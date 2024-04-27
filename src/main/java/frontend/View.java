@@ -113,7 +113,7 @@ public class View extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    contact = contactController.converToContact(inputField.getText());
+                    contact = contactController.convertToContact(inputField.getText());
                     setContact(contact);
                 } catch (WrongInputException ex) {
                     throw new RuntimeException(ex);

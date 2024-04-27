@@ -98,12 +98,12 @@ public class Contact {
         this.salutation = salutation;
     }
 
-    public void setLetterSalutation(String salutation) {
+    public void setLetterSalutation(String letterSalutation) {
         this.letterSalutation = letterSalutation;
     }
 
     public String getLetterSalutation() {
-        return letterSalutation;
+        return this.letterSalutation;
     }
 
     public void addTitle(String title) {
