@@ -1,13 +1,13 @@
 package database;
 
-import backend.Model;
+import backend.Contact;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface DataBaseController {
-    Optional<Model> getModelWithId(int id);
-    void addModel(Model model);
-    void updateModel(Model model);
-    List<Model> getAllModels();
+    Optional<Contact> getModelWithId(int id);
+    void addModel(Contact contact);
+    void updateModel(Contact contact);
+    List<Contact> getAllModels();
 }
