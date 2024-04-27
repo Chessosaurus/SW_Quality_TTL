@@ -99,7 +99,11 @@ public class Contact {
     }
 
     public void setLetterSalutation(String salutation) {
-        this.salutation = salutation;
+        this.letterSalutation = letterSalutation;
+    }
+
+    public String getLetterSalutation() {
+        return letterSalutation;
     }
 
     public void addTitle(String title) {
@@ -111,8 +115,6 @@ public class Contact {
     }
 
 
-    public String getLetterSalutation() {
-        return letterSalutation;
-    }
+
 
 }

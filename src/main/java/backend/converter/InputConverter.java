@@ -75,7 +75,7 @@ public class InputConverter {
         if (splittedInput.length != 1) {
             contact.setSalutation(findSalutation(splittedInput[0]));
             contact.setGender(findGender(splittedInput[0]));
-            contact.setLanguage(splittedInput[0]);
+            contact.setLanguage(findLanguage(splittedInput[0]));
             contact.setTitles(findTitles(splittedInput));
             String[] names = findNames(splittedInput);
             contact.setFirstName(names[0]);
@@ -101,9 +101,10 @@ public class InputConverter {
      * @return A single character string representing male ('m'), female ('f'), or undetermined ('x').
      */
     public String findGender(String input) {
-        if (maleGenders.contains(input)) return "m";
-        else if (femaleGenders.contains(input)) return "f";
-        else return "d";
+        if (maleGenders.contains(input)) return "männlich";
+        else if (femaleGenders.contains(input)) return "weiblich";
+        else if(diversGenders.contains(input)) return "divers";
+        else return "keine Angabe";
     }
 
 
@@ -212,19 +213,27 @@ public class InputConverter {
      * @return A list of extracted and combined titles.
      */
     public List<String> findTitles(String[] input) {
-        List<String> generatedTitles = new ArrayList<>();
-
-        for (int i = 0; i < input.length; i++) {
-            if (i < input.length - 1 && input[i].equals("Prof.") && input[i + 1].equals("Dr.")) {
-                generatedTitles.add("Prof. Dr.");
-                i++; // Skip the next element as it's already included in the combined title
-                i = findComplexTitle(input, generatedTitles, i, "Prof. Dr.");
+        List<String> generatedTitles = new ArrayList<String>();
+        for (int i = 0; i < input.length; i++) { // iterate over all parts of the Input Array
+            if (input[i].equals("Prof.")) {
+                if (input[i + 1].equals("Dr.")) {
+                    i++;
+                    String tempTitle = "Prof. Dr.";
+                    //determine a more complex title if existent
+                    i = findComplexTitle(input, generatedTitles, i, tempTitle);
+                } else {
+                    generatedTitles.add(input[i]);
+                }
             } else if (input[i].equals("Dr.")) {
-                i = findComplexTitle(input, generatedTitles, i, "Dr.");
-            } else if ((input[i].matches("[a-zA-Z]+,") && !maleGenders.contains(input[i]))
-                    && !femaleGenders.contains(input[i])
+                String tempTitle = "Dr.";
+                //determine a more complex title if existent
+                i = findComplexTitle(input, generatedTitles, i, tempTitle);
+            } else if ((input[i].matches("[a-zA-Z.]+\\.")
+                    && !maleGenders.contains(input[i])
                     && !diversGenders.contains(input[i])
-                    || titles.contains(input[i])) {
+                    && !femaleGenders.contains(input[i])
+                    || titles.contains(input[i]))) {
+                //check if the current potential title is not a salutation and the title ends with a '.'
                 generatedTitles.add(input[i]);
             }
         }
@@ -242,18 +251,20 @@ public class InputConverter {
      * @return The updated index after processing possible continuations of the current title.
      */
     private int findComplexTitle(String[] inputParts, List<String> titles, int currentIndex, String currentTitle) {
-        StringBuilder titleBuilder = new StringBuilder(currentTitle);
-
-        for (int nestIndex = currentIndex + 1; nestIndex < inputParts.length; nestIndex++) {
-            if (inputParts[nestIndex].matches("[A-Za-z]+,")) {
-                titleBuilder.append(" ").append(inputParts[nestIndex]);
+        for (int j = currentIndex + 1; j < inputParts.length; j++) {
+            if (inputParts[j].matches("[a-z.]+\\.")) {
+                //combine titles
+                currentTitle += " ";
+                currentTitle += inputParts[j];
             } else {
-                currentIndex = nestIndex - 1;
+                //determine oiteration variable to continue where it stopped
+                currentIndex = j - 1;
                 break;
             }
         }
-        titles.add(titleBuilder.toString());
+        titles.add(currentTitle);
         return currentIndex;
     }
 }
+
 
