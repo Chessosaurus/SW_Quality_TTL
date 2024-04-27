@@ -1,4 +1,6 @@
-package backend;
+package backend.converter;
+
+import backend.model.Contact;
 
 import java.util.ArrayList;
 import java.util.Arrays;

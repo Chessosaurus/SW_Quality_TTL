@@ -1,6 +1,6 @@
 package database;
 
-import backend.Contact;
+import backend.model.Contact;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,4 +1,6 @@
-package backend;
+package backend.converter;
+
+import backend.model.Contact;
 
 /**
  * Class responsible for generating salutations for Contact objects based on their gender,

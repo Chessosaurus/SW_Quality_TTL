@@ -1,9 +1,11 @@
 package backend;
 
+import backend.converter.InputConverter;
+import backend.converter.SalutationBuilder;
+import backend.model.Contact;
 import frontend.View;
 
 import java.util.List;
-import java.util.Optional;
 
 public class ContactController {
 

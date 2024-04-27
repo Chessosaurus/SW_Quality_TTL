@@ -1,6 +1,6 @@
 package database;
 
-import backend.Contact;
+import backend.model.Contact;
 
 import java.util.List;
 import java.util.Optional;

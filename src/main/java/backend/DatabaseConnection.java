@@ -1,5 +1,6 @@
 package backend;
 
+import backend.model.Contact;
 import database.DataBaseController;
 import database.DatabaseMock;
 
