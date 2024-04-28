@@ -143,7 +143,7 @@ public class View extends JFrame {
         previewButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                outputArea.setText(contact.getLetterSalutation());
+                outputArea.setText(contact.getLetterSalutation() + ",");
             }
         });
 
