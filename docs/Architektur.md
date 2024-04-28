@@ -1,0 +1,1 @@
+![architecture_contactsplitter.png](architecture/architecture_contactsplitter.png)
