@@ -43,7 +43,8 @@ public class DatabaseMock implements DataBaseController {
      */
     @Override
     public void addContact(Contact contact) {
-        if (containsId(contact.getId())) {
+
+        if (contact.getId() != 0 && containsId(contact.getId())) {
             updateContact(contact);
         } else {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath, true))) {
@@ -105,7 +106,7 @@ public class DatabaseMock implements DataBaseController {
 
     private String toCSV(Contact contact) {
         String titles = String.join("|", contact.getTitles()); // Assuming titles are separated by "|"
-        return contact.getId() + "," + contact.getFirstName() + "," + contact.getLastName() + "," + titles + "," + contact.getGender() + "," + contact.getLanguage() + "," + contact.getSalutation();
+        return contact.getId() + "," + contact.getFirstName() + "," + contact.getLastName() + "," + titles + "," + contact.getGender() + "," + contact.getLanguage() + "," + contact.getSalutation() + "," + contact.getLetterSalutation();
     }
 
     private static Contact fromCSV(String csvLine) {
