@@ -1,6 +1,7 @@
 package backend.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Contact {
@@ -114,7 +115,12 @@ public class Contact {
         this.titles.remove(title);
     }
 
-
+    public String getTitlesAsString(){
+        return String.join(",",this.titles);
+    }
+    public void setTitlesFromString(String titles){
+        this.titles = Arrays.asList(titles.split(","));
+    }
 
 
 }
