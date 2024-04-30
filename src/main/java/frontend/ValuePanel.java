@@ -3,6 +3,8 @@ package frontend;
 import backend.model.Contact;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +12,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class ValuePanel extends JPanel {
-    private enum TextInputFields {
+    private enum TextInputField {
         _SALUTATION("Anrede:", ".*", new JTextField(),
                 contact::setSalutation, contact::getSalutation),
         _TITLE("Titel:", ".*", new JTextField(),
@@ -21,26 +23,22 @@ public class ValuePanel extends JPanel {
                 contact::setLastName, contact::getLastName),
         ;
 
-        TextInputFields(String lblText, String validRexex,
-                        JTextField textField, Consumer<String> setter, Supplier<String> getter) {
+        TextInputField(String lblText, String validRegex,
+                       JTextField textField, Consumer<String> setter, Supplier<String> getter) {
             this.lblText = lblText;
-            this.validRexex = validRexex;
+            this.validRegex = validRegex;
             this.textField = textField;
             this.setter = setter;
             this.getter = getter;
         }
 
         private final String lblText;
-        private final String validRexex;
+        private final String validRegex;
         private final JTextField textField;
         private final Consumer<String> setter;
         private final Supplier<String> getter;
     }
 
-    /*private JTextField salutationField;
-    private JTextField titleField;
-    private JTextField firstnameField;
-    private JTextField lastnameField;*/
     private JComboBox<String> genderComboBox;
 
     private final String[] genders = {"keine Angabe", "männlich", "weiblich", "divers"};
@@ -52,149 +50,66 @@ public class ValuePanel extends JPanel {
     private MainView mainView;
 
     protected ValuePanel(MainView mainView) {
+        this.contact = new Contact();
         this.mainView = mainView;
         this.setLayout(new GridLayout(0, 2));
         addFields();
     }
 
-    public void setContactValues(Contact contact) {
+    public void setContact(Contact contact) {
         this.contact = contact;
+        for (TextInputField inputField : TextInputField.values()) {
+            inputField.textField.setText(inputField.getter.get());
+        }
     }
 
-    public Contact getContactValues() {
+    public Contact getContact() {
         return this.contact;
     }
 
     private void addFields() {
-        for (TextInputFields inputField : TextInputFields.values()) {
+        for (TextInputField inputField : TextInputField.values()) {
             this.add(new JLabel(inputField.lblText, SwingConstants.RIGHT));
-            inputField.textField.addActionListener(new ActionListener() {
+            inputField.textField.getDocument().addDocumentListener(new DocumentListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (isValidInput(inputField.textField.getText(), inputField.validRexex)) {
+                public void insertUpdate(DocumentEvent e) {
+                    inputChange();
+                }
+
+                @Override
+                public void removeUpdate(DocumentEvent e) {
+                    inputChange();
+                }
+
+                @Override
+                public void changedUpdate(DocumentEvent e) {
+                    inputChange();
+                }
+
+                private void inputChange() {
+                    if (mainView.isValidInput(inputField.textField.getText(), inputField.validRegex)) {
                         inputField.setter.accept(inputField.textField.getText());
                         mainView.enableSaving();
-                    }
-                    {
+                    } else {
                         mainView.disableSaving();
                     }
                 }
             });
             this.add(inputField.textField);
         }
-        initFields();
-        /*this.add(new JLabel("Anrede:", SwingConstants.RIGHT));
-        this.add(salutationField);
-        this.add(new JLabel("Titel:", SwingConstants.RIGHT));
-        this.add(titleField);
-        this.add(new JLabel("Vorname:", SwingConstants.RIGHT));
-        this.add(firstnameField);
-        this.add(new JLabel("Nachname", SwingConstants.RIGHT));
-        this.add(lastnameField);*/
+        initComboBoxes();
         this.add(new JLabel("Geschlecht:", SwingConstants.RIGHT));
         this.add(genderComboBox);
         this.add(new JLabel("Anredesprache:", SwingConstants.RIGHT));
         this.add(languageComboBox);
     }
 
-    private boolean isValidInput(String input, String validRegex) {
-        return input.matches(validRegex);
-    }
 
-    private void initFields() {
-        /*initSalutation();
-        initTitle();
-        initFirstName();
-        initLastName();*/
+    private void initComboBoxes() {
         initGenderBox();
         initLanguageBox();
     }
 
-    /*private void initSalutation() {
-        salutationField = new JTextField();
-        salutationField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changeSalutationTo(salutationField.getText());
-            }
-        });
-    }
-
-    private void changeSalutationTo(String salutation) {
-        if (salutation.matches(".*\\d.*")) {
-            //Invalid Input
-            mainView.disableSaving();
-        } else {
-            //Valid Input
-            contact.setSalutation(salutation);
-            mainView.enableSaving();
-        }
-    }
-
-    private void initTitle() {
-        titleField = new JTextField();
-        titleField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changeTitleTo(titleField.getText());
-            }
-        });
-    }
-
-    private void changeTitleTo(String title) {
-        if (title.matches(".*\\d.*")) {
-            //Invalid Input
-            mainView.disableSaving();
-        } else {
-            //Valid Input
-            contact.setFirstName(title);
-            mainView.enableSaving();
-        }
-    }
-
-    private void initFirstName() {
-        firstnameField = new JTextField();
-        firstnameField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changeFirstNameTo(firstnameField.getText());
-            }
-        });
-    }
-
-    private void changeFirstNameTo(String firstName) {
-        if (firstName.matches(".*\\d.*")) {
-            //Invalid Input
-            mainView.disableSaving();
-        } else {
-            //Valid Input
-            contact.setFirstName(firstName);
-            mainView.enableSaving();
-        }
-    }
-
-    private void initLastName() {
-        lastnameField = new JTextField();
-        lastnameField.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changeLastNameTo(lastnameField.getText());
-            }
-        });
-    }
-
-    private void changeLastNameTo(String lastName) {
-        if (lastName.matches(".*\\d.*")) {
-            //Invalid Input
-            mainView.disableSaving();
-        } else {
-            //Valid Input
-            contact.setLastName(lastName);
-            mainView.enableSaving();
-        }
-    }
-
-     */
     private void initGenderBox() {
         genderComboBox = new JComboBox<>(genders);
         genderComboBox.addActionListener(new ActionListener() {
