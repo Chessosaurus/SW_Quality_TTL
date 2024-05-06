@@ -16,6 +16,7 @@ In diesem Dokument finden Sie alle Informaitonen zur Benutzung und Einschränkun
 ### 2. Laden einer Anrede
 
 * Durch das klicken auf den "Laden"-Knopf erscheint ein weiteres Fenster, welches das laden von bereits gespeicherten Kontakten.
+  
 ![image](https://github.com/Chessosaurus/SW_Quality_TTL/assets/52112815/16b44dca-9c2d-46c7-b688-26e2536c338f)
 * Hier werden alle gespeicherten Kontakte aufgelistet und können durch das klicken auf den "laden"-Button in der zugehörigen Reihe in das Hauptfenster geladen werden.
 * Wenn nun Änderungen an dem Kontakt in der Hauptansicht vorgenommen werden und diese dann durch klicken auf den "Bestätigen"-Knopf gespeichert werden, dann wird der geladene Kontakt mit den Änderungen überschrieben.
