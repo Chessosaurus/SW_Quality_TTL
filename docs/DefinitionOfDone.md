@@ -10,4 +10,4 @@ Bevor eine User Story als abgeschlossen gilt, müssen alle hier definierten Punk
 7. Funktionstests wurden in der Entwicklungsumgebung durchgeführt.
 8. Der Code wurde in der Versionsverwaltung eingecheckt.
 9. Die Dokumentation wurde aktualisiert.
-10. Die Release-Node wurde aktualisiert.
+10. Die Releasenote wurde aktualisiert.
