@@ -44,50 +44,50 @@ Folgende Testdaten wurden verwendet. Die erwartete Splittung wird unter dem Name
 1. Frau Sandra Berger
     * Vorname: Sandra
     * Nachname: Berger
-    * Geschlecht: Frau
+    * Geschlecht: weiblich
     * Titel: -
-    * Briefanrede: Sehr geehrte Frau Berger,
+    * Briefanrede: Sehr geehrte Frau Berger
 2. Herr Dr. Sandro Gutmensch
     * Vorname: Sandro
     * Nachname: Gutmensch
-    * Geschlecht: Mann
+    * Geschlecht: männlich
     * Titel: Dr.
-    * Briefanrede: Sehr geehrter Herr Dr. Gutmensch,
+    * Briefanrede: Sehr geehrter Herr Dr. Gutmensch
 
 3. Professor Heinrich Freiherr vom Wald
     * Vorname: Heinrich
     * Nachname: Freiherr vom Wald
-    * Geschlecht: Divers
+    * Geschlecht: divers
     * Titel: Professor
-    * Briefanrede: Guten Tag Prof. Freiherr vom Wald,
+    * Briefanrede: Guten Tag Prof. Freiherr vom Wald
 4. Mrs. Doreen Faber
     * Vorname: Doreen
     * Nachname: Faber
-    * Geschlecht: Frau
+    * Geschlecht: weiblich
     * Titel: -
-    * Briefanrede: Dear Mrs Faber,
+    * Briefanrede: Dear Mrs Faber
 5. Mme. Charlotte Noir
     * Vorname: Charlotte
     * Nachname: Noir
-    * Geschlecht: Frau
+    * Geschlecht: weiblich
     * Titel: -
-    * Briefanrede: Dear Mrs Noir,
+    * Briefanrede: Dear Mrs Noir
 6. Frau Prof. Dr. rer. nat. Maria von Leuthäuser-Schnarrenberger
     * Vorname: Maria
     * Nachname: von Leuthäuser-Schnarrenberger
-    * Geschlecht: Frau
+    * Geschlecht: weiblch
     * Titel: Prof. Dr. rer. nat.
     * Briefanrede: Sehr geehrte Frau Prof. von Leuthäuser-Schnarrenberger
 7. Herr Dipl.-Ing. Max von Müller
     * Vorname: Max
     * Nachname: von Müller
-    * Geschlecht: Mann
+    * Geschlecht: männlich
     * Titel: Dipl.-Ing.
-    * Briefanrede: Sehr geehrter Herr Dipl.-Ing. von Müller,
+    * Briefanrede: Sehr geehrter Herr Dipl.-Ing. von Müller
 8. Dr. Russwurm, Winfried
     * Vorname: Winfried
     * Nachname: Russwurm
-    * Geschlecht: Divers
+    * Geschlecht: divers
     * Titel: Dr.
     * Briefanrede:Guten Tag Dr. Russwurm
 9. Herr Dr.-Ing. Dr. rer. nat. Dr. h.c. mult. Paul Steffens
@@ -95,7 +95,7 @@ Folgende Testdaten wurden verwendet. Die erwartete Splittung wird unter dem Name
     * Nachname: Steffens
     * Geschlecht:
     * Titel:Dr. Ing. Dr. nat. Dr. h.c.
-    * Briefanrede: Sehr geehrter Herr Dr. Steffens,
+    * Briefanrede: Sehr geehrter Herr Dr. Steffens
 ## Testdurchführung
 Die Tests werden von qualifizierten Testern durchgeführt, die mit den technischen Spezifikationen und den fachlichen Anforderungen vertraut sind.
 Tests werden immer vor jedem Produktupdate durchgeführt.
