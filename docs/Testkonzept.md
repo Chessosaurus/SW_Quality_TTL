@@ -109,16 +109,10 @@ Folgende Testdaten wurden verwendet. Die erwartete Splittung wird unter dem Name
     * Anrede: Herr
     * Vorname: Paul
     * Nachname: Steffens
-<<<<<<< Updated upstream
     * Geschlecht: m
     * Titel:Dr. Ing., Dr. nat., Dr. h.c.
     * Anredesprache: de
     * Briefanrede: Sehr geehrter Herr Dr. Steffens
-=======
-    * Geschlecht: männlich
-    * Titel:Dr. Ing., Dr. nat., Dr. h.c.
-    * Anredesprache: Deutsch
-    * Briefanrede: Sehr geehrter Herr Dr. Steffens,
 >>>>>>> Stashed changes
 ## Testdurchführung
 Die Tests werden von qualifizierten Testern durchgeführt, die mit den technischen Spezifikationen und den fachlichen Anforderungen vertraut sind.
