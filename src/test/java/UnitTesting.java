@@ -2,7 +2,9 @@ import backend.ContactController;
 import backend.WrongInputException;
 import backend.converter.InputConverter;
 import backend.model.Contact;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ErrorCollector;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,39 +16,143 @@ import static org.junit.Assert.assertTrue;
 
 
 public class UnitTesting {
-
+    @Rule
+    public ErrorCollector collector = new ErrorCollector();
     ContactController cc = new ContactController();
 
     @Test
     public void testName_one() throws WrongInputException {
         String name = "Frau Sandra Berger";
         Contact actual = cc.convertToContact(name);
-        assertTrue(new ContactMatcher()
+        new ContactMatcher()
                 .withFirstName("Sandra")
                 .withLastName("Berger")
-                .withGender("weiblich")
+                .withGender("f")
                 .withLanguage("de")
                 .withTitles(new ArrayList<String>())
                 .withSalutation("Frau")
                 .withLetterSalutation("Sehr geehrte Frau Berger")
-                .matches(actual)
-        );
+                .matches(actual);
     }
+
     @Test
     public void testName_two() throws WrongInputException {
         String name = "Herr Dr. Sandro Gutmensch";
         Contact actual = cc.convertToContact(name);
-        assertTrue(new ContactMatcher()
+        new ContactMatcher()
                 .withFirstName("Sandro")
                 .withLastName("Gutmensch")
-                .withGender("männlich")
+                .withGender("m")
                 .withLanguage("de")
                 .withTitles(List.of("Dr."))
-                .withSalutation("Dr.")
+                .withSalutation("Herr")
                 .withLetterSalutation("Sehr geehrter Herr Dr. Gutmensch")
-                .matches(actual)
-        );
+                .matches(actual);
     }
+
+    @Test
+    public void testName_three() throws WrongInputException {
+        String name = "Professor Heinrich Freiherr vom Wald";
+        Contact actual = cc.convertToContact(name);
+        new ContactMatcher()
+                .withFirstName("Heinrich")
+                .withLastName("Freiherr vom Wald")
+                .withGender("keine Angabe")
+                .withLanguage("de")
+                .withTitles(List.of("Professor"))
+                .withSalutation("")
+                .withLetterSalutation("Guten Tag Prof. Freiherr vom Wald")
+                .matches(actual);
+
+    }
+    @Test
+    public void testName_four() throws WrongInputException {
+        String name = "Mrs. Doreen Faber";
+        Contact actual = cc.convertToContact(name);
+        new ContactMatcher()
+                .withFirstName("Doreen")
+                .withLastName("Faber")
+                .withGender("f")
+                .withLanguage("en")
+                .withTitles(new ArrayList<>())
+                .withSalutation("Mrs.")
+                .withLetterSalutation("Dear Mrs Faber")
+                .matches(actual);
+
+    }
+    @Test
+    public void testName_five() throws WrongInputException {
+        String name = "Mme. Charlotte Noir";
+        Contact actual = cc.convertToContact(name);
+        new ContactMatcher()
+                .withFirstName("Charlotte")
+                .withLastName("Noir")
+                .withGender("f")
+                .withLanguage("en")
+                .withTitles(new ArrayList<>())
+                .withSalutation("Mme.")
+                .withLetterSalutation("Dear Mrs Noir")
+                .matches(actual);
+
+    }
+    @Test
+    public void testName_six() throws WrongInputException {
+        String name = "Frau Prof. Dr. rer. nat. Maria von Leuthäuser-Schnarrenberger";
+        Contact actual = cc.convertToContact(name);
+        new ContactMatcher()
+                .withFirstName("Maria")
+                .withLastName("von Leuthäuser-Schnarrenberger")
+                .withGender("f")
+                .withLanguage("de")
+                .withTitles(List.of("Prof. Dr. rer. nat."))
+                .withSalutation("Frau")
+                .withLetterSalutation("Sehr geehrte Frau Prof. von Leuthäuser-Schnarrenberger")
+                .matches(actual);
+    }
+    @Test
+    public void testName_seven() throws WrongInputException {
+        String name = "Herr Dipl.-Ing. Max von Müller";
+        Contact actual = cc.convertToContact(name);
+        new ContactMatcher()
+                .withFirstName("Max")
+                .withLastName("von Müller")
+                .withGender("m")
+                .withLanguage("de")
+                .withTitles(List.of("Dipl.-Ing."))
+                .withSalutation("Herr")
+                .withLetterSalutation("Sehr geehrter Herr Dipl.-Ing. von Müller")
+                .matches(actual);
+    }
+    @Test
+    public void testName_eight() throws WrongInputException {
+        String name = "Dr. Russwurm, Winfried";
+        Contact actual = cc.convertToContact(name);
+        new ContactMatcher()
+                .withFirstName("Winfried")
+                .withLastName("Russwurm")
+                .withGender("keine Angabe")
+                .withLanguage("de")
+                .withTitles(new ArrayList<>())
+                .withSalutation("")
+                .withLetterSalutation("Guten Tag Dr. Russwurm")
+                .matches(actual);
+    }
+    @Test
+    public void testName_nine() throws WrongInputException {
+        String name = "Herr Dr.-Ing. Dr. rer. nat. Dr. h.c. mult. Paul Steffens";
+        Contact actual = cc.convertToContact(name);
+        new ContactMatcher()
+                .withFirstName("Paul")
+                .withLastName("Steffens")
+                .withGender("m")
+                .withLanguage("de")
+                .withTitles(List.of("Dr. Ing. Dr. nat. Dr. h.c."))
+                .withSalutation("Herr")
+                .withLetterSalutation("Sehr geehrter Herr Dr. Steffens")
+                .matches(actual);
+    }
+
+
 
     class ContactMatcher {
         protected WithFirstName withFirstName(String firstName) {
@@ -140,15 +246,14 @@ public class UnitTesting {
                 this.expected = c;
             }
 
-            private boolean matches(Contact actual) {
-                if (!expected.getFirstName().equals(actual.getFirstName())) return false;
-                if (!expected.getLastName().equals(actual.getLastName())) return false;
-                if (!expected.getGender().equals(actual.getGender())) return false;
-                if (!expected.getLetterSalutation().equals(actual.getLetterSalutation())) return false;
-                if (!expected.getLanguage().equals(actual.getLanguage())) return false;
-                if (!expected.getSalutation().equals(actual.getSalutation())) return false;
-                if (!expected.getTitles().equals(actual.getTitles())) return false;
-                return true;
+            private void matches(Contact actual) {
+                assertEquals(expected.getFirstName(), actual.getFirstName());
+                assertEquals(expected.getLastName(), actual.getLastName());
+                assertEquals(expected.getGender(), actual.getGender());
+                assertEquals(expected.getLetterSalutation(), actual.getLetterSalutation());
+                assertEquals(expected.getLanguage(), actual.getLanguage());
+                assertEquals(expected.getSalutation(), actual.getSalutation());
+                assertEquals(expected.getTitles(), actual.getTitles());
             }
         }
     }
