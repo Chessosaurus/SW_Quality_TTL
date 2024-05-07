@@ -22,12 +22,12 @@ Die nachfolgenden Testfälle werden anhand von Unit-Tests abgeprüft.
 ## UI-Testing
 Aufgrund der Größe des Projekts wird auf das automatisierte Testen der UI mit Tools verzichtet. Stattdessen werden manuelle UI-Tests als ausreichend betrachtet. Deshalb wird die UI durch manuelles Testen hinsichtlich ihrer Funktionalität geprüft. Zusätzlich kann die korrekte Ausgabe der eingegebenen Namen geprüft werden. Die folgenden Funktionalitäten bzw. Erscheinungen werden abgeprüft :
 #### Abzuprüfende Testfälle - UI
-* Eingabe Taste splittet den eingegebenen Namen in seine Bestandteile
-* Taste Laden öffnet zweite Sicht und es werden Datenbank einträge angezeigt
+* "Eingabe" Taste splittet den eingegebenen Namen in seine Bestandteile
+* Taste "Laden" öffnet zweite Sicht und es werden Datenbank einträge angezeigt
   * Datensätze können geladen und werden in den richtigen Feldern angezeigt
-* Vorschau der Briefanrede kann durch das Betätigen der Preview Taste angezeigt werden
-* Speichern der Datensätze in der Datenbank mit der Taste "" funktioniert.
-* 
+* Vorschau der Briefanrede kann durch das Betätigen der "Preview" Taste angezeigt werden
+* Speichern der Datensätze in der Datenbank mit der Taste "laden" funktioniert.
+
 ## Integration Tests
 Auf Integration Tests wird an dieser Stelle verzichtet, da die Anwendung aus Sicht des Entwicklerteams nicht ausreichend komplex ist. Daher würde das Erstellen eines Integration Tests Zeit kosten, ohne einen nennenswerten Mehrwert darzustellen.
 
