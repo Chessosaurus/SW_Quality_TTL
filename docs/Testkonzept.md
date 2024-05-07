@@ -42,60 +42,78 @@ Folgende Testdaten wurden verwendet. Die erwartete Splittung wird unter dem Name
 >
 > [^1]: [Anrede bei Mehrfachtiteln](https://www.sekada.de/korrespondenz/anrede-und-anschriften/artikel/korrespondenz-anrede-von-doktoren-und-professoren/)
 1. Frau Sandra Berger
+    * Anrede: Frau
     * Vorname: Sandra
     * Nachname: Berger
     * Geschlecht: weiblich
     * Titel: -
-    * Briefanrede: Sehr geehrte Frau Berger
+    * Anredesprache: Deutsch
+    * Briefanrede: Sehr geehrte Frau Berger,
 2. Herr Dr. Sandro Gutmensch
+    * Anrede: Herr
     * Vorname: Sandro
     * Nachname: Gutmensch
     * Geschlecht: männlich
     * Titel: Dr.
-    * Briefanrede: Sehr geehrter Herr Dr. Gutmensch
+    * Anredesprache: Deutsch
+    * Briefanrede: Sehr geehrter Herr Dr. Gutmensch,
 
 3. Professor Heinrich Freiherr vom Wald
+    * Anrede: -
     * Vorname: Heinrich
     * Nachname: Freiherr vom Wald
     * Geschlecht: divers
     * Titel: Professor
-    * Briefanrede: Guten Tag Prof. Freiherr vom Wald
+    * Anredesprache: Deutsch
+    * Briefanrede: Guten Tag Prof. Freiherr vom Wald,
 4. Mrs. Doreen Faber
+    * Anrede: Mrs.
     * Vorname: Doreen
     * Nachname: Faber
     * Geschlecht: weiblich
     * Titel: -
-    * Briefanrede: Dear Mrs Faber
+    * Anredesprache: Englisch
+    * Briefanrede: Dear Mrs Faber,
 5. Mme. Charlotte Noir
+    * Anrede: Mme.
     * Vorname: Charlotte
     * Nachname: Noir
     * Geschlecht: weiblich
     * Titel: -
-    * Briefanrede: Dear Mrs Noir
+    * Anredesprache: Englisch
+    * Briefanrede: Dear Mrs Noir,
 6. Frau Prof. Dr. rer. nat. Maria von Leuthäuser-Schnarrenberger
+    * Anrede: Frau
     * Vorname: Maria
     * Nachname: von Leuthäuser-Schnarrenberger
-    * Geschlecht: weiblch
+    * Geschlecht: weiblich
+    * Anredesprache: Deutsch
     * Titel: Prof. Dr. rer. nat.
     * Briefanrede: Sehr geehrte Frau Prof. von Leuthäuser-Schnarrenberger
 7. Herr Dipl.-Ing. Max von Müller
+    * Anrede: Herr
     * Vorname: Max
     * Nachname: von Müller
     * Geschlecht: männlich
     * Titel: Dipl.-Ing.
-    * Briefanrede: Sehr geehrter Herr Dipl.-Ing. von Müller
+    * Anredesprache: Deutsch
+    * Briefanrede: Sehr geehrter Herr Dipl.-Ing. von Müller,
 8. Dr. Russwurm, Winfried
+    * Anrede: -
     * Vorname: Winfried
     * Nachname: Russwurm
     * Geschlecht: divers
     * Titel: Dr.
-    * Briefanrede:Guten Tag Dr. Russwurm
+    * Anredesprache: Deutsch
+    * Briefanrede: Guten Tag Dr. Russwurm
 9. Herr Dr.-Ing. Dr. rer. nat. Dr. h.c. mult. Paul Steffens
+    * Anrede: Herr
     * Vorname: Paul
     * Nachname: Steffens
-    * Geschlecht:
+    * Geschlecht: männlich
     * Titel:Dr. Ing. Dr. nat. Dr. h.c.
-    * Briefanrede: Sehr geehrter Herr Dr. Steffens
+    * Anredesprache: Deutsch
+    * Briefanrede: Sehr geehrter Herr Dr. Steffens,
 ## Testdurchführung
 Die Tests werden von qualifizierten Testern durchgeführt, die mit den technischen Spezifikationen und den fachlichen Anforderungen vertraut sind.
 Tests werden immer vor jedem Produktupdate durchgeführt.
