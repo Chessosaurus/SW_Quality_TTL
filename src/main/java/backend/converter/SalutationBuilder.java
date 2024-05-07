@@ -30,7 +30,7 @@ public class SalutationBuilder {
         return switch (gender) {
             case "f" -> "Sehr geehrte Frau" + formatTitle(title);
             case "m" -> "Sehr geehrter Herr" + formatTitle(title);
-            default -> "Guten Tag";
+            default -> "Guten Tag" + formatTitle(title);
         };
     }
 
@@ -39,7 +39,7 @@ public class SalutationBuilder {
             case "f" -> "Dear Mrs" + formatTitle(title);
             case "m" -> "Dear Mr" + formatTitle(title);
             case "d" -> "Dear Mx" + formatTitle(title);
-            default -> "Dear";
+            default -> "Dear" + formatTitle(title);
         };
     }
 
