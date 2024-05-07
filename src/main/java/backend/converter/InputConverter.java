@@ -105,7 +105,7 @@ public class InputConverter {
      */
     public String findGender(String input) {
         if (maleGenders.contains(input)) return "m";
-        else if (femaleGenders.contains(input)) return "w";
+        else if (femaleGenders.contains(input)) return "f";
         else if (diversGenders.contains(input)) return "d";
         else return "keine Angabe";
     }
