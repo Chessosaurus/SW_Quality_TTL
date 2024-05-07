@@ -104,9 +104,9 @@ public class InputConverter {
      * @return A single character string representing male ('m'), female ('f'), or undetermined ('x').
      */
     public String findGender(String input) {
-        if (maleGenders.contains(input)) return "männlich";
-        else if (femaleGenders.contains(input)) return "weiblich";
-        else if (diversGenders.contains(input)) return "divers";
+        if (maleGenders.contains(input)) return "m";
+        else if (femaleGenders.contains(input)) return "w";
+        else if (diversGenders.contains(input)) return "d";
         else return "keine Angabe";
     }
 
