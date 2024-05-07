@@ -42,7 +42,8 @@ public class OutputPanel extends JPanel {
         }
     }
 
-    public void updateSalutation() {
+    public void updateSalutation(Contact c) {
+        letterSalutation.setText(c);
     }
 
     void setContact(Contact contact) {
