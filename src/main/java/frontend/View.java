@@ -159,7 +159,7 @@ public class View extends JFrame {
                     contact.setGender(genderComboBox.getSelectedItem().toString());
                 }
 
-                if(languageComboBox.getSelectedItem().toString().equals("English")){
+                if(languageComboBox.getSelectedItem().toString().equals("Englisch")){
                     contact.setLanguage("en");
                 } else if (languageComboBox.getSelectedItem().toString().equals("Deutsch")){
                     contact.setLanguage("de");
