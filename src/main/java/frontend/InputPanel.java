@@ -3,9 +3,6 @@ package frontend;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class InputPanel extends JPanel {
     private enum Buttons {
@@ -24,7 +21,7 @@ public class InputPanel extends JPanel {
         }
     }
 
-    private JLabel inputPanel;
+    private JLabel inputLabel;
     private static JTextField inputField;
     private String validRegex = ".*";
     static MainView mainView;
@@ -40,7 +37,7 @@ public class InputPanel extends JPanel {
     }
 
     private void initTextField() {
-        inputPanel = new JLabel("Eingabe:");
+        inputLabel = new JLabel("Eingabe:");
         inputField = new JTextField();
         inputField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -60,37 +57,34 @@ public class InputPanel extends JPanel {
 
             private void inputChange() {
                 if (mainView.isValidInput(inputField.getText(), validRegex)) {
-                    mainView.enableValidating();
+                    mainView.enableSaveValidate(true);
                 } else {
-                    mainView.disableValidating();
+                    mainView.enableSaveValidate(false);
                 }
             }
         });
+        this.add(inputLabel);
+        this.add(inputField);
     }
 
     private void initButtons() {
         for (Buttons button : Buttons.values()) {
-
-            button.button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    button.buttonPressed.run();
-                }
-            });
+            button.button.setText(button.label);
+            button.button.addActionListener(e -> button.buttonPressed.run());
             this.add(button.button);
         }
     }
 
     private static void validateContact() {
-        mainView.getValuesFromString(inputField.getText());
+        mainView.setValuesFromString(inputField.getText());
     }
 
     private static void loadContact() {
-
+        mainView.loadContact();
     }
 
     private static void resetContact() {
-
+        mainView.resetContact();
     }
     protected void setValidationPossible(boolean validationPossible) {
         Buttons._ENTER.button.setEnabled(validationPossible);

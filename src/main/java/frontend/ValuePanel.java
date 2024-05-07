@@ -3,6 +3,7 @@ package frontend;
 import backend.model.Contact;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
@@ -12,6 +13,8 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class ValuePanel extends JPanel {
+
+
     private enum TextInputField {
         _SALUTATION("Anrede:", ".*", new JTextField(),
                 contact::setSalutation, contact::getSalutation),
@@ -66,6 +69,9 @@ public class ValuePanel extends JPanel {
     public Contact getContact() {
         return this.contact;
     }
+    public void updateSalutation() {
+        TextInputField._SALUTATION.textField.setText(contact.getSalutation());
+    }
 
     private void addFields() {
         for (TextInputField inputField : TextInputField.values()) {
@@ -89,9 +95,11 @@ public class ValuePanel extends JPanel {
                 private void inputChange() {
                     if (mainView.isValidInput(inputField.textField.getText(), inputField.validRegex)) {
                         inputField.setter.accept(inputField.textField.getText());
-                        mainView.enableSaving();
+                        inputField.textField.setBorder(new LineBorder(Color.BLACK, 2));
+                        mainView.enableSaveValidate(true);
                     } else {
-                        mainView.disableSaving();
+                        inputField.textField.setBorder(new LineBorder(Color.RED, 2));
+                        mainView.enableSaveValidate(false);
                     }
                 }
             });
