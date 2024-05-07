@@ -111,7 +111,7 @@ Folgende Testdaten wurden verwendet. Die erwartete Splittung wird unter dem Name
     * Nachname: Steffens
 <<<<<<< Updated upstream
     * Geschlecht: m
-    * Titel:Dr. Ing. Dr. nat. Dr. h.c.
+    * Titel:Dr. Ing., Dr. nat., Dr. h.c.
     * Anredesprache: de
     * Briefanrede: Sehr geehrter Herr Dr. Steffens
 =======
