@@ -146,7 +146,7 @@ public class UnitTesting {
                 .withLastName("Steffens")
                 .withGender("m")
                 .withLanguage("de")
-                .withTitles(List.of("Dr. Ing."," Dr. rer. nat."," Dr. h.c."))
+                .withTitles(List.of("Dr.-Ing.","Dr. rer. nat.","Dr. h.c. mult."))
                 .withSalutation("Herr")
                 .withLetterSalutation("Sehr geehrter Herr Dr. Steffens")
                 .matches(actual);

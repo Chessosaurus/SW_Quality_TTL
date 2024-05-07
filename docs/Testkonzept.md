@@ -110,7 +110,7 @@ Folgende Testdaten wurden verwendet. Die erwartete Splittung wird unter dem Name
     * Vorname: Paul
     * Nachname: Steffens
     * Geschlecht: m
-    * Titel:Dr. Ing., Dr. nat., Dr. h.c.
+    * Titel: Dr.-Ing., Dr. nat., Dr. h.c. mult.
     * Anredesprache: de
     * Briefanrede: Sehr geehrter Herr Dr. Steffens
 >>>>>>> Stashed changes
