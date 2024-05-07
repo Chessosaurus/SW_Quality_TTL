@@ -113,7 +113,6 @@ Folgende Testdaten wurden verwendet. Die erwartete Splittung wird unter dem Name
     * Titel: Dr.-Ing., Dr. nat., Dr. h.c. mult.
     * Anredesprache: de
     * Briefanrede: Sehr geehrter Herr Dr. Steffens
->>>>>>> Stashed changes
 ## Testdurchführung
 Die Tests werden von qualifizierten Testern durchgeführt, die mit den technischen Spezifikationen und den fachlichen Anforderungen vertraut sind.
 Tests werden immer vor jedem Produktupdate durchgeführt.
