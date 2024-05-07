@@ -23,7 +23,7 @@ public class View extends JFrame {
     JButton previewButton;
     JButton confirmButton;
     public View() {
-        setTitle("Meine UI");
+        setTitle("Kontaktsplitter");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
         setLayout(new BorderLayout());
@@ -142,7 +142,33 @@ public class View extends JFrame {
         });
         previewButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
+                contact.setSalutation(salutationField.getText());
+                contact.setTitles(Arrays.asList(titleField.getText().split(", ")));
+                contact.setFirstName(firstnameField.getText());
+                contact.setLastName(lastnameField.getText());
+
+                if(genderComboBox.getSelectedItem().toString().equals("männlich")) {
+                    contact.setGender("m");
+                } else if (genderComboBox.getSelectedItem().toString().equals("weiblich")) {
+                    contact.setGender("f");
+                } else if (genderComboBox.getSelectedItem().toString().equals("divers")) {
+                    contact.setGender("d");
+                } else {
+                    contact.setGender(genderComboBox.getSelectedItem().toString());
+                }
+
+                if(languageComboBox.getSelectedItem().toString().equals("English")){
+                    contact.setLanguage("en");
+                } else if (languageComboBox.getSelectedItem().toString().equals("Deutsch")){
+                    contact.setLanguage("de");
+                } else {
+                    contact.setLanguage(languageComboBox.getSelectedItem().toString());
+                }
+
+
+                contactController.updateSalutation(contact);
                 outputArea.setText(contact.getLetterSalutation() + ",");
             }
         });

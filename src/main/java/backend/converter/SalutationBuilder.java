@@ -28,22 +28,22 @@ public class SalutationBuilder {
 
     private String createGermanSalutation(String gender, String title) {
         return switch (gender) {
-            case "weiblich" -> "Sehr geehrte Frau" + formatTitle(title, "Frau");
-            case "männlich" -> "Sehr geehrter Herr" + formatTitle(title, "Herr");
+            case "f" -> "Sehr geehrte Frau" + formatTitle(title);
+            case "m" -> "Sehr geehrter Herr" + formatTitle(title);
             default -> "Guten Tag";
         };
     }
 
     private String createEnglishSalutation(String gender, String title) {
         return switch (gender) {
-            case "weiblich" -> "Dear Mrs" + formatTitle(title, "");
-            case "männlich" -> "Dear Mr" + formatTitle(title, "");
-            case "divers" -> "Dear Mx" + formatTitle(title, "");
+            case "f" -> "Dear Mrs" + formatTitle(title);
+            case "m" -> "Dear Mr" + formatTitle(title);
+            case "d" -> "Dear Mx" + formatTitle(title);
             default -> "Dear";
         };
     }
 
-    private String formatTitle(String title, String prefix) {
+    private String formatTitle(String title) {
         if (title.isEmpty()) {
             return "";
         }
