@@ -20,15 +20,15 @@ public class SecondView extends JFrame {
     JTable table;
     View view;
     public SecondView(View view) {
-        setTitle("Zweite Ansicht");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Schließe nur das zweite Fenster
+        setTitle("Laden von Kontakten");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Closes second View
         setSize(600, 400);
         this.view = view;
         JButton backButton = new JButton("Zurück");
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose(); // Schließe das zweite Fenster
+                dispose(); // Closes second View
             }
         });
 
@@ -44,7 +44,7 @@ public class SecondView extends JFrame {
 
         add(panel);
 
-        setLocationRelativeTo(null); // Zentriere das Fenster
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -52,7 +52,7 @@ public class SecondView extends JFrame {
         MyTableModel tableModel = new MyTableModel();
         JTable table = new JTable(tableModel);
 
-        // Button-Renderer und -Editor für die letzte Spalte der Tabelle hinzufügen
+        // Adds Button for last Column
         TableColumnModel columnModel = table.getColumnModel();
         columnModel.getColumn(6).setCellRenderer(new ButtonRenderer());
         columnModel.getColumn(6).setCellEditor(new ButtonEditor(new JTextField()));
@@ -64,7 +64,7 @@ public class SecondView extends JFrame {
 
         @Override
         public int getColumnCount() {
-            // Die Anzahl der Spalten
+            // Returns ColumnCount
             return 7;
         }
 
@@ -84,7 +84,7 @@ public class SecondView extends JFrame {
 
         @Override
         public int getRowCount() {
-            // Hier könntest du die Anzahl der Zeilen dynamisch anpassen
+            // Dynamic RowCount
             return contacts.size();
         }
 
@@ -127,7 +127,7 @@ public class SecondView extends JFrame {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // Zurück zur Hauptseite navigieren, wenn ein Button in der Tabelle geklickt wird
+                    // Navigates back to Main Page
                     System.out.println("Button wurde geklickt");
                     int selectedRow = table.getSelectedRow();
                     view.setContact(contacts.get(selectedRow));
@@ -156,8 +156,6 @@ public class SecondView extends JFrame {
         @Override
         public Object getCellEditorValue() {
             if (isPushed) {
-                // Aktion ausführen, wenn der Button gedrückt wird
-                // Hier kannst du die gewünschte Aktion hinzufügen
                 System.out.println(label + " Button clicked.");
             }
             isPushed = false;
