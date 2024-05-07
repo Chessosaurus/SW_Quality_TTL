@@ -21,8 +21,9 @@ public class SalutationBuilder {
             baseSalutation = createGermanSalutation(contact.getGender(), title);
         } else if (contact.getLanguage().equals("en")) {
             baseSalutation = createEnglishSalutation(contact.getGender(), title);
+        } else if (!title.isEmpty()) {
+            contact.setLetterSalutation(baseSalutation +" " + formatTitle(title) +" " + contact.getLastName());
         }
-
         contact.setLetterSalutation(baseSalutation + " " + contact.getLastName());
     }
 
