@@ -1,23 +1,16 @@
 import backend.ContactController;
 import backend.WrongInputException;
-import backend.converter.InputConverter;
 import backend.model.Contact;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 
 public class UnitTesting {
-    @Rule
-    public ErrorCollector collector = new ErrorCollector();
     ContactController cc = new ContactController();
 
     @Test
@@ -132,7 +125,7 @@ public class UnitTesting {
                 .withLastName("Russwurm")
                 .withGender("keine Angabe")
                 .withLanguage("undefined")
-                .withTitles(new ArrayList<>())
+                .withTitles(List.of("Dr."))
                 .withSalutation("")
                 .withLetterSalutation("Guten Tag Dr. Russwurm")
                 .matches(actual);
