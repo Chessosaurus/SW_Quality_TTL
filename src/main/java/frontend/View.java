@@ -23,13 +23,13 @@ public class View extends JFrame {
     JButton previewButton;
     JButton confirmButton;
     public View() {
-        setTitle("Meine UI");
+        setTitle("Kontaktsplitter");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
         setLayout(new BorderLayout());
         setResizable(false);
 
-        // Input Feld oben
+        // Top Input Field with Buttons
         JPanel inputPanel = new JPanel();
         JTextField inputField = new JTextField(20);
         JButton inputButton = new JButton("Eingabe");
@@ -42,35 +42,35 @@ public class View extends JFrame {
         add(inputPanel, BorderLayout.NORTH);
 
         contactController = new ContactController();
-        // Kasten mit 5 Input Feldern nebeneinander
+
+        // Box with Input-Fields for output and edit of the splitted Contact
         JPanel boxPanel = new JPanel();
-        boxPanel.setLayout(new GridLayout(0, 2)); // Änderung hier - GridLayout für Beschriftungen und Textfelder
-        Insets insets = new Insets(10, 10, 10, 10); // Insets für Padding
+        boxPanel.setLayout(new GridLayout(0, 2));
+        Insets insets = new Insets(10, 10, 10, 10);
 
         String[] labels = {"Anrede:", "Titel:", "Vorname:", "Nachname:", "Geschlecht:", "Anredesprache"};
 
-
         for (int i = 0; i < 6; i++) {
-            if (i == 4) { // Falls es das letzte Feld ist (Index 4)
-                genderComboBox = new JComboBox<>(new String[]{"keine Angabe", "männlich", "weiblich", "divers"}); // Erstelle eine Dropdown-Liste mit den Geschlechts-Optionen
-                JLabel label = new JLabel(labels[i], SwingConstants.RIGHT); // Rechtsbündig ausgerichtetes Label
-                label.setBorder(BorderFactory.createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right)); // Setze das Padding für das Label
-                boxPanel.add(label); // Füge das Label hinzu
-                boxPanel.add(genderComboBox); // Füge die Dropdown-Liste hinzu
-            } else if (i == 5) {
-                languageComboBox = new JComboBox<>(new String[]{"Deutsch", "Englisch"}); // Erstelle eine Dropdown-Liste mit den Geschlechts-Optionen
-                JLabel label = new JLabel(labels[i], SwingConstants.RIGHT); // Rechtsbündig ausgerichtetes Label
-                label.setBorder(BorderFactory.createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right)); // Setze das Padding für das Label
-                boxPanel.add(label); // Füge das Label hinzu
-                boxPanel.add(languageComboBox); // Füge die Dropdown-Liste hinzu
+            if (i == 4) { // If the index is 4 then a ComboBox for gender is created
+                genderComboBox = new JComboBox<>(new String[]{"keine Angabe", "männlich", "weiblich", "divers"}); // Creates Combo Box
+                JLabel label = new JLabel(labels[i], SwingConstants.RIGHT);
+                label.setBorder(BorderFactory.createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
+                boxPanel.add(label);
+                boxPanel.add(genderComboBox);
+            } else if (i == 5) { // If the index is 5 then a ComboBox for language is created
+                languageComboBox = new JComboBox<>(new String[]{"Deutsch", "Englisch"}); // Creates Combo Box
+                JLabel label = new JLabel(labels[i], SwingConstants.RIGHT);
+                label.setBorder(BorderFactory.createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
+                boxPanel.add(label);
+                boxPanel.add(languageComboBox);
             } else {
-                JTextField textField = new JTextField(10); // Erstelle das Textfeld
-                JLabel label = new JLabel(labels[i], SwingConstants.RIGHT); // Rechtsbündig ausgerichtetes Label
-                label.setBorder(BorderFactory.createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right)); // Setze das Padding für das Label
-                boxPanel.add(label); // Füge das Label hinzu
-                boxPanel.add(textField); // Füge das Textfeld hinzu
+                JTextField textField = new JTextField(10); // Else a TextField is created
+                JLabel label = new JLabel(labels[i], SwingConstants.RIGHT);
+                label.setBorder(BorderFactory.createEmptyBorder(insets.top, insets.left, insets.bottom, insets.right));
+                boxPanel.add(label);
+                boxPanel.add(textField);
 
-                // Setter für jedes Textfeld
+                // Depending on the index, the text fields are created
                 switch (i) {
                     case 0:
                         salutationField = textField;
@@ -96,17 +96,16 @@ public class View extends JFrame {
         previewButton.setEnabled(false);
         confirmButton.setEnabled(false);
 
-        // Outputfeld unten
+        // Bottom OutputField
         JTextArea outputArea = new JTextArea(5, 20);
         JScrollPane scrollPane = new JScrollPane(outputArea);
         add(scrollPane, BorderLayout.SOUTH);
 
-        // ActionListener für den Laden-Button hinzufügen
+        // ActionListener for Loading-Button
         loadDataButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Hier Code einfügen, um die neue Ansicht anzuzeigen
-                new SecondView(View.this); // Instanziere und zeige die neue Ansicht
+                new SecondView(View.this); // New Instance of SecondView
             }
         });
         inputButton.addActionListener(new ActionListener() {
@@ -142,7 +141,33 @@ public class View extends JFrame {
         });
         previewButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
+                contact.setSalutation(salutationField.getText());
+                contact.setTitles(Arrays.asList(titleField.getText().split(", ")));
+                contact.setFirstName(firstnameField.getText());
+                contact.setLastName(lastnameField.getText());
+
+                if(genderComboBox.getSelectedItem().toString().equals("männlich")) {
+                    contact.setGender("m");
+                } else if (genderComboBox.getSelectedItem().toString().equals("weiblich")) {
+                    contact.setGender("f");
+                } else if (genderComboBox.getSelectedItem().toString().equals("divers")) {
+                    contact.setGender("d");
+                } else {
+                    contact.setGender(genderComboBox.getSelectedItem().toString());
+                }
+
+                if(languageComboBox.getSelectedItem().toString().equals("Englisch")){
+                    contact.setLanguage("en");
+                } else if (languageComboBox.getSelectedItem().toString().equals("Deutsch")){
+                    contact.setLanguage("de");
+                } else {
+                    contact.setLanguage(languageComboBox.getSelectedItem().toString());
+                }
+
+
+                contactController.updateSalutation(contact);
                 outputArea.setText(contact.getLetterSalutation() + ",");
             }
         });
@@ -163,7 +188,7 @@ public class View extends JFrame {
         confirmButton.setEnabled(true);
     }
 
-    // Setter für jedes Eingabefeld, akzeptiert Strings als Parameter
+    // Setter for each InputField, accepts String as parameter
     public void setAnredeField(String text) {
         salutationField.setText(text);
     }

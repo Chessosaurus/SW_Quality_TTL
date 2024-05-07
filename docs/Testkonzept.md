@@ -22,12 +22,12 @@ Die nachfolgenden Testfälle werden anhand von Unit-Tests abgeprüft.
 ## UI-Testing
 Aufgrund der Größe des Projekts wird auf das automatisierte Testen der UI mit Tools verzichtet. Stattdessen werden manuelle UI-Tests als ausreichend betrachtet. Deshalb wird die UI durch manuelles Testen hinsichtlich ihrer Funktionalität geprüft. Zusätzlich kann die korrekte Ausgabe der eingegebenen Namen geprüft werden. Die folgenden Funktionalitäten bzw. Erscheinungen werden abgeprüft :
 #### Abzuprüfende Testfälle - UI
-* Eingabe Taste splittet den eingegebenen Namen in seine Bestandteile
-* Taste Laden öffnet zweite Sicht und es werden Datenbank einträge angezeigt
+* "Eingabe" Taste splittet den eingegebenen Namen in seine Bestandteile
+* Taste "Laden" öffnet zweite Sicht und es werden Datenbank einträge angezeigt
   * Datensätze können geladen und werden in den richtigen Feldern angezeigt
-* Vorschau der Briefanrede kann durch das Betätigen der Preview Taste angezeigt werden
-* Speichern der Datensätze in der Datenbank mit der Taste "" funktioniert.
-* 
+* Vorschau der Briefanrede kann durch das Betätigen der "Preview" Taste angezeigt werden
+* Speichern der Datensätze in der Datenbank mit der Taste "laden" funktioniert.
+
 ## Integration Tests
 Auf Integration Tests wird an dieser Stelle verzichtet, da die Anwendung aus Sicht des Entwicklerteams nicht ausreichend komplex ist. Daher würde das Erstellen eines Integration Tests Zeit kosten, ohne einen nennenswerten Mehrwert darzustellen.
 
@@ -42,60 +42,77 @@ Folgende Testdaten wurden verwendet. Die erwartete Splittung wird unter dem Name
 >
 > [^1]: [Anrede bei Mehrfachtiteln](https://www.sekada.de/korrespondenz/anrede-und-anschriften/artikel/korrespondenz-anrede-von-doktoren-und-professoren/)
 1. Frau Sandra Berger
+    * Anrede: Frau
     * Vorname: Sandra
     * Nachname: Berger
-    * Geschlecht: Frau
+    * Geschlecht: f
     * Titel: -
-    * Briefanrede: Sehr geehrte Frau Berger,
+    * Anredesprache: de
+    * Briefanrede: Sehr geehrte Frau Berger
 2. Herr Dr. Sandro Gutmensch
+    * Anrede: Herr
     * Vorname: Sandro
     * Nachname: Gutmensch
-    * Geschlecht: Mann
+    * Geschlecht: f
     * Titel: Dr.
-    * Briefanrede: Sehr geehrter Herr Dr. Gutmensch,
-
+    * Anredesprache: de
+    * Briefanrede: Sehr geehrter Herr Dr. Gutmensch
 3. Professor Heinrich Freiherr vom Wald
+    * Anrede: -
     * Vorname: Heinrich
     * Nachname: Freiherr vom Wald
-    * Geschlecht: Divers
+    * Geschlecht: keine Angabe
     * Titel: Professor
-    * Briefanrede: Guten Tag Prof. Freiherr vom Wald,
+    * Anredesprache: de
+    * Briefanrede: Guten Tag Prof. Freiherr vom Wald
 4. Mrs. Doreen Faber
+    * Anrede: Mrs.
     * Vorname: Doreen
     * Nachname: Faber
-    * Geschlecht: Frau
+    * Geschlecht: f
     * Titel: -
+    * Anredesprache: en
     * Briefanrede: Dear Mrs Faber,
 5. Mme. Charlotte Noir
+    * Anrede: Mme.
     * Vorname: Charlotte
     * Nachname: Noir
-    * Geschlecht: Frau
+    * Geschlecht: f
     * Titel: -
-    * Briefanrede: Dear Mrs Noir,
+    * Anredesprache: en
+    * Briefanrede: Dear Mrs Noir
 6. Frau Prof. Dr. rer. nat. Maria von Leuthäuser-Schnarrenberger
+    * Anrede: Frau
     * Vorname: Maria
     * Nachname: von Leuthäuser-Schnarrenberger
-    * Geschlecht: Frau
-    * Titel: Prof. Dr. rer. nat.
+    * Geschlecht: f
+    * Titel: Prof. Dr. rer. nat. 
+    * Anredesprache: de
     * Briefanrede: Sehr geehrte Frau Prof. von Leuthäuser-Schnarrenberger
 7. Herr Dipl.-Ing. Max von Müller
+    * Anrede: Herr
     * Vorname: Max
     * Nachname: von Müller
-    * Geschlecht: Mann
+    * Geschlecht: m
     * Titel: Dipl.-Ing.
-    * Briefanrede: Sehr geehrter Herr Dipl.-Ing. von Müller,
+    * Anredesprache: de
+    * Briefanrede: Sehr geehrter Herr Dipl.-Ing. von Müller
 8. Dr. Russwurm, Winfried
+    * Anrede: Guten Tag
     * Vorname: Winfried
     * Nachname: Russwurm
-    * Geschlecht: Divers
+    * Geschlecht: keine Angabe
     * Titel: Dr.
-    * Briefanrede:Guten Tag Dr. Russwurm
+    * Anredesprache: de
+    * Briefanrede: Guten Tag Dr. Russwurm
 9. Herr Dr.-Ing. Dr. rer. nat. Dr. h.c. mult. Paul Steffens
+    * Anrede: Herr
     * Vorname: Paul
     * Nachname: Steffens
-    * Geschlecht:
-    * Titel:Dr. Ing. Dr. nat. Dr. h.c.
-    * Briefanrede: Sehr geehrter Herr Dr. Steffens,
+    * Geschlecht: m
+    * Titel: Dr.-Ing., Dr. nat., Dr. h.c. mult.
+    * Anredesprache: de
+    * Briefanrede: Sehr geehrter Herr Dr. Steffens
 ## Testdurchführung
 Die Tests werden von qualifizierten Testern durchgeführt, die mit den technischen Spezifikationen und den fachlichen Anforderungen vertraut sind.
 Tests werden immer vor jedem Produktupdate durchgeführt.
