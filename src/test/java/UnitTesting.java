@@ -58,7 +58,7 @@ public class UnitTesting {
                 .withFirstName("Heinrich")
                 .withLastName("Freiherr vom Wald")
                 .withGender("keine Angabe")
-                .withLanguage("de")
+                .withLanguage("undefined")
                 .withTitles(List.of("Professor"))
                 .withSalutation("")
                 .withLetterSalutation("Guten Tag Prof. Freiherr vom Wald")
@@ -131,7 +131,7 @@ public class UnitTesting {
                 .withFirstName("Winfried")
                 .withLastName("Russwurm")
                 .withGender("keine Angabe")
-                .withLanguage("de")
+                .withLanguage("undefined")
                 .withTitles(new ArrayList<>())
                 .withSalutation("")
                 .withLetterSalutation("Guten Tag Dr. Russwurm")
@@ -250,9 +250,9 @@ public class UnitTesting {
                 assertEquals(expected.getFirstName(), actual.getFirstName());
                 assertEquals(expected.getLastName(), actual.getLastName());
                 assertEquals(expected.getGender(), actual.getGender());
-                assertEquals(expected.getLetterSalutation(), actual.getLetterSalutation());
                 assertEquals(expected.getLanguage(), actual.getLanguage());
                 assertEquals(expected.getSalutation(), actual.getSalutation());
+                assertEquals(expected.getLetterSalutation(), actual.getLetterSalutation());
                 assertEquals(expected.getTitles(), actual.getTitles());
             }
         }
