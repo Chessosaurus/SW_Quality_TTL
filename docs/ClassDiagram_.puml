@@ -70,7 +70,7 @@ config=StructureConfiguration;
     "showPackageLevels": 2,
     "showDetailedClassStructure": true
   },
-  "rootClass": "backend.ContactController",
+  "rootClass": "database.DataBaseController",
   "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
 }
 diagram meta data end '/
@@ -100,6 +100,19 @@ subgraph cluster_1242788334 {
 <TR><TD ALIGN="LEFT" >#   view: View [0..1]</TD></TR>
 <HR/>
 <TR><TD ALIGN="LEFT" >- createTable(): JTable</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ThirdView1242788334[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ThirdView</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   contactController: ContactController [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   view: View [0..1]</TD></TR>
 </TABLE>>
 	style=filled
 	margin=0
@@ -137,7 +150,21 @@ subgraph cluster_1789464955 {
 	fillcolor="#ececec"
 	style=filled
    
-   DatabaseMock1789464955[
+   DataBaseController1789464955[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(I)DataBaseController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addContact(contact: Contact)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAllContacts(): List&lt;Contact&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateContact(contact: Contact)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#F1E5FD"
+];
+
+DatabaseMock1789464955[
 	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
 <TR><TD ALIGN="LEFT" >(C)DatabaseMock</TD></TR>
 <HR/>
@@ -147,7 +174,6 @@ subgraph cluster_1789464955 {
 <TR><TD ALIGN="LEFT" >+ addContact(contact: Contact)</TD></TR>
 <TR><TD ALIGN="LEFT" >- containsId(id: int): boolean</TD></TR>
 <TR><TD ALIGN="LEFT" >- fromCSV(csvLine: String): Contact</TD></TR>
-<TR><TD ALIGN="LEFT" >+ getContactWithId(id: int): Optional&lt;Contact&gt;</TD></TR>
 <TR><TD ALIGN="LEFT" >- toCSV(contact: Contact): String</TD></TR>
 <TR><TD ALIGN="LEFT" >+ updateContact(updateContact: Contact)</TD></TR>
 </TABLE>>
@@ -192,11 +218,10 @@ subgraph cluster_347208044 {
 <HR/>
 <TR><TD ALIGN="LEFT" >#   contactConverter: InputConverter [0..1]</TD></TR>
 <TR><TD ALIGN="LEFT" >#   databaseConnection: DatabaseConnection [0..1]</TD></TR>
-<TR><TD ALIGN="LEFT" >#   salutationBuilder: SalutationBuilder [0..1]</TD></TR>
 <HR/>
+<TR><TD ALIGN="LEFT" >+ addNewTitle(title: String)</TD></TR>
 <TR><TD ALIGN="LEFT" >- checkInput(in: String)</TD></TR>
 <TR><TD ALIGN="LEFT" >+ convertToContact(input: String): Contact</TD></TR>
-<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
 <TR><TD ALIGN="LEFT" >+ saveContact(contact: Contact)</TD></TR>
 <TR><TD ALIGN="LEFT" >+ updateSalutation(contact: Contact)</TD></TR>
 </TABLE>>
@@ -213,61 +238,6 @@ DatabaseConnection347208044[
 <TR><TD ALIGN="LEFT" >#   db: DataBaseController [0..1]</TD></TR>
 <HR/>
 <TR><TD ALIGN="LEFT" >+ addContact(contact: Contact)</TD></TR>
-<TR><TD ALIGN="LEFT" >+ getContactWithId(id: int): Optional&lt;Contact&gt;</TD></TR>
-<TR><TD ALIGN="LEFT" >+ updateContact(updateContact: Contact)</TD></TR>
-</TABLE>>
-	style=filled
-	margin=0
-	shape=plaintext
-	fillcolor="#FFFFFF"
-];
-} 
-
-subgraph cluster_349730400 { 
-   	label=converter
-	labeljust=l
-	fillcolor="#ececec"
-	style=filled
-   
-   InputConverter493897018[
-	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
-<TR><TD ALIGN="LEFT" >(C)InputConverter</TD></TR>
-<HR/>
-<TR><TD ALIGN="LEFT" >#   connectors: List&lt;String&gt; [0..*]</TD></TR>
-<TR><TD ALIGN="LEFT" >#   diversGenders: List&lt;String&gt; [0..*]</TD></TR>
-<TR><TD ALIGN="LEFT" >#   english: List&lt;String&gt; [0..*]</TD></TR>
-<TR><TD ALIGN="LEFT" >#   femaleGenders: List&lt;String&gt; [0..*]</TD></TR>
-<TR><TD ALIGN="LEFT" >#   german: List&lt;String&gt; [0..*]</TD></TR>
-<TR><TD ALIGN="LEFT" >#   maleGenders: List&lt;String&gt; [0..*]</TD></TR>
-<TR><TD ALIGN="LEFT" >#   prefixes: List&lt;String&gt; [0..*]</TD></TR>
-<TR><TD ALIGN="LEFT" >#   salutation: List&lt;String&gt; [0..*]</TD></TR>
-<TR><TD ALIGN="LEFT" >#   titles: List&lt;String&gt; [0..*]</TD></TR>
-<HR/>
-<TR><TD ALIGN="LEFT" >+ addTitle(newTitle: String)</TD></TR>
-<TR><TD ALIGN="LEFT" >+ convert(input: String): Contact</TD></TR>
-<TR><TD ALIGN="LEFT" >- findComplexTitle(inputParts: List&lt;String&gt;, titles: List&lt;String&gt;, currentIndex: int, currentTitle: String): int</TD></TR>
-<TR><TD ALIGN="LEFT" >+ findGender(input: String): String</TD></TR>
-<TR><TD ALIGN="LEFT" >+ findLanguage(input: String): String</TD></TR>
-<TR><TD ALIGN="LEFT" >- findSalutation(input: String): String</TD></TR>
-<TR><TD ALIGN="LEFT" >+ findTitles(input: List&lt;String&gt;): List&lt;String&gt;</TD></TR>
-<TR><TD ALIGN="LEFT" >- isGenderOrTitle(part: String): boolean</TD></TR>
-<TR><TD ALIGN="LEFT" >+ parseName(input: List&lt;String&gt;): String[]</TD></TR>
-<TR><TD ALIGN="LEFT" >- removeNonNameEntries(inputList: List&lt;String&gt;, contact: Contact)</TD></TR>
-</TABLE>>
-	style=filled
-	margin=0
-	shape=plaintext
-	fillcolor="#FFFFFF"
-];
-
-SalutationBuilder493897018[
-	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
-<TR><TD ALIGN="LEFT" >(C)SalutationBuilder</TD></TR>
-<HR/>
-<TR><TD ALIGN="LEFT" >- createEnglishSalutation(gender: String, title: String): String</TD></TR>
-<TR><TD ALIGN="LEFT" >- createGermanSalutation(gender: String, title: String): String</TD></TR>
-<TR><TD ALIGN="LEFT" >+ createSalutation(contact: Contact)</TD></TR>
-<TR><TD ALIGN="LEFT" >- formatTitle(title: String): String</TD></TR>
 </TABLE>>
 	style=filled
 	margin=0
@@ -279,14 +249,18 @@ SalutationBuilder493897018[
 'edges    
 ContactController347208044 -> DatabaseConnection347208044[label="databaseConnection
 [0..1]"];
-ContactController347208044 -> InputConverter493897018[label="contactConverter
+DataBaseController1789464955 -> DatabaseMock1789464955[arrowhead=none, arrowtail=empty, dir=both];
+DatabaseConnection347208044 -> DataBaseController1789464955[label="db
 [0..1]"];
-ContactController347208044 -> SalutationBuilder493897018[label="salutationBuilder
-[0..1]"];
-DatabaseConnection347208044 -> DatabaseMock1789464955[arrowhead=none];
 SecondView1242788334 -> ContactController347208044[label="contactController
 [0..1]"];
+SecondView1242788334 -> DatabaseConnection347208044[label="dbConnection
+[0..1]"];
 SecondView1242788334 -> View1242788334[label="view
+[0..1]"];
+ThirdView1242788334 -> ContactController347208044[label="contactController
+[0..1]"];
+ThirdView1242788334 -> View1242788334[label="view
 [0..1]"];
 View1242788334 -> ContactController347208044[label="contactController
 [0..1]"];
