@@ -1,5 +1,5 @@
 # Releasenote
-In diesem Dokument finden Sie alle Informaitonen zur Benutzung und Einschränkung dieses Programmes.
+In diesem Dokument finden Sie alle Informationen zur Benutzung und Einschränkung dieses Programmes.
 
 ## Benutzung
 ### 1. Eingabe einer Anrede
