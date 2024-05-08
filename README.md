@@ -40,7 +40,7 @@ Bei Problemen oder Rückfragen kontaktieren Sie bitte:
 
 ## Inbetriebnahme
 Schritte zum Ausführen der mitgelieferten .jar Datei:
-* Wenn die richtige Java Version vorhanden ist können Sie die Datei mit Java -jar xx.jar aufrufen, wenn Sie das Terminal im richtigen Ordner öffnen
+* Wenn die richtige Java Version vorhanden ist, können Sie die Datei mit Java -jar xx.jar aufrufen, wenn Sie das Terminal im richtigen Ordner öffnen
 * Falls die richtige Version nicht vorhanden ist, können Sie diese auf https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html für das passende Betriebssystem herunterladen.
 Danach sollten Sie die erste Methode anwenden können.
 
