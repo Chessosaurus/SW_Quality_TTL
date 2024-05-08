@@ -34,9 +34,7 @@ public abstract class CustomLogger {
      *
      * @param message Text to log
      */
-    public static void error(String message) {
-        write("ERROR: " + message);
-    }
+    public static void error(String message) {write("ERROR: " + message);}
 
     /**
      * Writes a message with a timestamp to the log File
