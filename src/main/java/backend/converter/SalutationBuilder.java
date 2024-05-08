@@ -6,14 +6,14 @@ import backend.model.Contact;
  * Class responsible for generating salutations for Contact objects based on their gender,
  * names, language, and titles.
  */
-public class SalutationBuilder {
+public abstract class SalutationBuilder {
 
     /**
      * Creates a salutation for the input Contact object based on its gender, language, and titles.
      *
      * @param contact The Contact object for which the salutation is created.
      */
-    public void createSalutation(Contact contact) {
+    public static void createSalutation(Contact contact) {
         String title = contact.getTitles().isEmpty() ? "" : contact.getTitles().getFirst();
         String baseSalutation = "Guten Tag";
 
@@ -27,7 +27,7 @@ public class SalutationBuilder {
             contact.setLetterSalutation(baseSalutation + " " + contact.getLastName());
     }
 
-    private String createGermanSalutation(String gender, String title) {
+    private static String createGermanSalutation(String gender, String title) {
         return switch (gender) {
             case "f" -> "Sehr geehrte Frau" + formatTitle(title);
             case "m" -> "Sehr geehrter Herr" + formatTitle(title);
@@ -35,7 +35,7 @@ public class SalutationBuilder {
         };
     }
 
-    private String createEnglishSalutation(String gender, String title) {
+    private static String createEnglishSalutation(String gender, String title) {
         return switch (gender) {
             case "f" -> "Dear Mrs" + formatTitle(title);
             case "m" -> "Dear Mr" + formatTitle(title);
@@ -44,7 +44,7 @@ public class SalutationBuilder {
         };
     }
 
-    private String formatTitle(String title) {
+    private static String formatTitle(String title) {
         if (title.isEmpty()) {
             return "";
         }

@@ -88,6 +88,7 @@ public class InputConverter {
             contact.setLastName(splittedInput.getFirst());
             contact.setGender("d");
         }
+        SalutationBuilder.createSalutation(contact);
         return contact;
     }
 
