@@ -8,7 +8,6 @@ import java.util.*;
  * This class serves as a converter for processing names and titles from string input.
  * It initializes and maintains lists of gender-specific terms, titles, prefixes, and connectors
  * to aid in parsing and converting names from various formats.
- * <p>
  */
 public class InputConverter {
 

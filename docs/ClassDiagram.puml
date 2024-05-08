@@ -1,0 +1,295 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "backend.ContactController",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1242788334 { 
+   	label=frontend
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   SecondView1242788334[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SecondView</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   contactController: ContactController [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   contacts: List&lt;Contact&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   dbConnection: DatabaseConnection [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   table: JTable [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   view: View [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- createTable(): JTable</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+View1242788334[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)View</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   confirmButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   contact: Contact [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   contactController: ContactController [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   firstnameField: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   genderComboBox: JComboBox&lt;String&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   languageComboBox: JComboBox&lt;String&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lastnameField: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   previewButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   salutationField: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   titleField: JTextField [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ clearFields()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1789464955 { 
+   	label=database
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   DatabaseMock1789464955[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DatabaseMock</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   csvFilePath: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   nextId: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addContact(contact: Contact)</TD></TR>
+<TR><TD ALIGN="LEFT" >- containsId(id: int): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- fromCSV(csvLine: String): Contact</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getContactWithId(id: int): Optional&lt;Contact&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >- toCSV(contact: Contact): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateContact(updateContact: Contact)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_342281055 { 
+   	label=logging
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   CustomLogger342281055[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CustomLogger</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ error(message: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ log(message: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ warning(message: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- write(message: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_347208044 { 
+   	label=backend
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   ContactController347208044[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ContactController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   contactConverter: InputConverter [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   databaseConnection: DatabaseConnection [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   salutationBuilder: SalutationBuilder [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- checkInput(in: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ convertToContact(input: String): Contact</TD></TR>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+<TR><TD ALIGN="LEFT" >+ saveContact(contact: Contact)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateSalutation(contact: Contact)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+DatabaseConnection347208044[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DatabaseConnection</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   db: DataBaseController [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addContact(contact: Contact)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getContactWithId(id: int): Optional&lt;Contact&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateContact(updateContact: Contact)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_349730400 { 
+   	label=converter
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   InputConverter493897018[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)InputConverter</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   connectors: List&lt;String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   diversGenders: List&lt;String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   english: List&lt;String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   femaleGenders: List&lt;String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   german: List&lt;String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   maleGenders: List&lt;String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   prefixes: List&lt;String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   salutation: List&lt;String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   titles: List&lt;String&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addTitle(newTitle: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ convert(input: String): Contact</TD></TR>
+<TR><TD ALIGN="LEFT" >- findComplexTitle(inputParts: List&lt;String&gt;, titles: List&lt;String&gt;, currentIndex: int, currentTitle: String): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ findGender(input: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ findLanguage(input: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- findSalutation(input: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ findTitles(input: List&lt;String&gt;): List&lt;String&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >- isGenderOrTitle(part: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ parseName(input: List&lt;String&gt;): String[]</TD></TR>
+<TR><TD ALIGN="LEFT" >- removeNonNameEntries(inputList: List&lt;String&gt;, contact: Contact)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+SalutationBuilder493897018[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SalutationBuilder</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- createEnglishSalutation(gender: String, title: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >- createGermanSalutation(gender: String, title: String): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ createSalutation(contact: Contact)</TD></TR>
+<TR><TD ALIGN="LEFT" >- formatTitle(title: String): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+ContactController347208044 -> DatabaseConnection347208044[label="databaseConnection
+[0..1]"];
+ContactController347208044 -> InputConverter493897018[label="contactConverter
+[0..1]"];
+ContactController347208044 -> SalutationBuilder493897018[label="salutationBuilder
+[0..1]"];
+DatabaseConnection347208044 -> DatabaseMock1789464955[arrowhead=none];
+SecondView1242788334 -> ContactController347208044[label="contactController
+[0..1]"];
+SecondView1242788334 -> View1242788334[label="view
+[0..1]"];
+View1242788334 -> ContactController347208044[label="contactController
+[0..1]"];
+    
+}
+@enduml
