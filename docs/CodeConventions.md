@@ -1,5 +1,5 @@
 # Code Conventions
-Um die Codebasis einheitlich zugestalten, werden Code Conventions festgelegt. Diese dienen den Entwicklern als Leitfaden für die Erstellung von Code. Durch das Einhalten der Code Conventions werden folgende Ziele erreicht:
+Um die Codebasis einheitlich zu gestalten, werden Code Conventions festgelegt. Diese dienen den Entwicklern als Leitfaden für die Erstellung von Code. Durch das Einhalten der Code Conventions werden folgende Ziele erreicht:
 * Geringere Einarbeitungszeit in zu reviewenden Code eines anderen Teammitglieds
 * Reduzierung von Fehlerquellen
 * höhere Produktivität beim Erstellen
