@@ -22,10 +22,10 @@ public class View extends JFrame {
     private Contact contact;
     JButton previewButton;
     JButton confirmButton;
-    public View() {
+    public View(ContactController contactController) {
         setTitle("Kontaktsplitter");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(600, 400);
+        setSize(700, 400);
         setLayout(new BorderLayout());
         setResizable(false);
 
@@ -33,15 +33,17 @@ public class View extends JFrame {
         JPanel inputPanel = new JPanel();
         JTextField inputField = new JTextField(20);
         JButton inputButton = new JButton("Eingabe");
+        JButton addTitleButton = new JButton("Titel hinzufügen");
         JButton loadDataButton = new JButton("Laden");
         JButton clearButton = new JButton("Zurücksetzten");
         inputPanel.add(inputField);
         inputPanel.add(inputButton);
+        inputPanel.add(addTitleButton);
         inputPanel.add(loadDataButton);
         inputPanel.add(clearButton);
         add(inputPanel, BorderLayout.NORTH);
 
-        contactController = new ContactController();
+        this.contactController = contactController;
 
         // Box with Input-Fields for output and edit of the splitted Contact
         JPanel boxPanel = new JPanel();
@@ -105,7 +107,7 @@ public class View extends JFrame {
         loadDataButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new SecondView(View.this); // New Instance of SecondView
+                new SecondView(View.this,contactController); // New Instance of SecondView
             }
         });
         inputButton.addActionListener(new ActionListener() {
@@ -119,6 +121,13 @@ public class View extends JFrame {
                 }
             }
         });
+        addTitleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ThirdView(View.this, contactController); // New Instance of ThirdView
+            }
+        });
+
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

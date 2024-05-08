@@ -40,7 +40,7 @@ public class InputConverter {
         maleGenders = Arrays.asList(maleInitValues);
         femaleGenders = Arrays.asList(femaleInitValues);
         diversGenders = Arrays.asList(diversInitValues);
-        titles = Arrays.asList(titlesInitValues);
+        titles = new ArrayList<>(Arrays.asList(titlesInitValues));
         german = Arrays.asList(germanLanguage);
         english = Arrays.asList(englishLanguage);
         prefixes = Arrays.asList(prefixesValueInit);
@@ -55,7 +55,9 @@ public class InputConverter {
      * @param newTitle The title to be added.
      */
     public void addTitle(String newTitle) {
-        if (!titles.contains(newTitle)) titles.add(newTitle);
+        if (!titles.contains(newTitle)){
+            this.titles.add(newTitle);
+        }
     }
 
     /**

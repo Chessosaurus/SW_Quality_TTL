@@ -15,11 +15,12 @@ import java.util.List;
 
 public class SecondView extends JFrame {
     private final DatabaseConnection dbConnection = new DatabaseConnection(); // Erstelle eine Instanz von DatabaseConnection
-    private final ContactController contactController = new ContactController();
+    private final ContactController contactController;
     private List<Contact> contacts;
     JTable table;
     View view;
-    public SecondView(View view) {
+    public SecondView(View view, ContactController contactController) {
+        this.contactController = contactController;
         setTitle("Laden von Kontakten");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Closes second View
         setSize(600, 400);
@@ -39,8 +40,6 @@ public class SecondView extends JFrame {
         table = createTable();
         JScrollPane scrollPane = new JScrollPane(table);
         panel.add(scrollPane, BorderLayout.CENTER);
-
-        panel.add(backButton, BorderLayout.SOUTH);
 
         add(panel);
 
