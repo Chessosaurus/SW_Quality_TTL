@@ -24,7 +24,7 @@ In diesem Dokument finden Sie alle Informationen zur Benutzung und Einschränkun
 ---
 
 ## Zusätzliche Features und Einschränkungen
-##Zusätzliche Features
+## Zusätzliche Features
 * Spracherkennung anhand von deutscher oder englischer Anrede.
 * Briefanrede in Deutsch und Englisch verfügbar.
 * Persistente Datenhaltung nach schließen der Applikation.
