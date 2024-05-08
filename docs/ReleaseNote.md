@@ -24,7 +24,7 @@ In diesem Dokument finden Sie alle Informationen zur Benutzung und Einschränkun
 ---
 
 ## Zusätzliche Features und Einschränkungen
-## Zusätzliche Features
+### Zusätzliche Features
 * Spracherkennung anhand von deutscher oder englischer Anrede.
 * Briefanrede in Deutsch und Englisch verfügbar.
 * Persistente Datenhaltung nach schließen der Applikation.
@@ -34,5 +34,5 @@ In diesem Dokument finden Sie alle Informationen zur Benutzung und Einschränkun
 * Mehr als 2 Vornamen möglich und werden durch Bindestrich verknüpft. Das letzte Wort wird als Nachname angesehen.
 
 ---
-## Einschränkungnen
+### Einschränkungnen
 * Limitation von Nachnamen Verbindungen (z.B. Freiherr vom Wald) auf "vom".
