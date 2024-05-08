@@ -1,4 +1,0 @@
-Beim neuen Laden, werden Änderungen nicht übernommen und die alte Liste nochmal angezeigt
-In der Lade Tabelle wird statt "" "[]" angezeigt, wenn keine Titel vorhanden sind
-Bei der Preview sind manchmal Komma drin, manchmal nicht
-Wenn man Werte ändert, nachdem man auf Preview drückt, ändern sich die nicht mehr (auch wenn man nochmal Preview drückt)

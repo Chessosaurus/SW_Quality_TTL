@@ -1,1 +1,1 @@
-![architecture_contactsplitter.png](architecture/architecture_contactsplitter.png)
+![architecture_contactsplitter.png](architecture/design_contactsplitter.png)

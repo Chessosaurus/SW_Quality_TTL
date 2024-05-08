@@ -11,6 +11,7 @@ import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.List;
 
 public class SecondView extends JFrame {
@@ -91,7 +92,7 @@ public class SecondView extends JFrame {
         public Object getValueAt(int row, int column) {
             return switch (column) {
                 case 0 -> contacts.get(row).getSalutation();
-                case 1 -> contacts.get(row).getTitles();
+                case 1 -> String.join(" ",contacts.get(row).getTitles());
                 case 2 -> contacts.get(row).getFirstName();
                 case 3 -> contacts.get(row).getLastName();
                 case 4 -> contacts.get(row).getGender();
