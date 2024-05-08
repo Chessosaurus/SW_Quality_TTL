@@ -41,7 +41,7 @@ damit die Daten korrekt im System angelegt werden können.
 #### Akzeptanzkriterien:
 * Nutzer können jederzeit manuelle Korrekturen an Anrede, Namen und Titeln vornehmen.
 * Das System speichert manuelle Korrekturen, nachdem die Korrektur bestätigt wurde.
-
+* Neue Titel können durch Nutzer hinzugefügt werden.
 
 ### User Story 5: Doppelnamen-Erkennung und -Formatierung
 Als CRM-Nutzer
