@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public abstract class CustomLogger {
-    private static String logFilePath = new File(CustomLogger.class.getProtectionDomain()
+    private static final String logFilePath = new File(CustomLogger.class.getProtectionDomain()
             .getCodeSource().getLocation().getPath()).getParent() + File.separator + "logFile.txt";
 
     /**

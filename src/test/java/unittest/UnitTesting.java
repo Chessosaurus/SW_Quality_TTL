@@ -1,9 +1,9 @@
+package unittest;
+
 import backend.ContactController;
 import backend.WrongInputException;
 import backend.model.Contact;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ErrorCollector;
 
 import java.util.ArrayList;
 import java.util.List;
