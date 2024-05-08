@@ -36,3 +36,6 @@ In diesem Dokument finden Sie alle Informationen zur Benutzung und Einschränkun
 ---
 ### Einschränkungnen
 * Limitation von Nachnamen Verbindungen (z.B. Freiherr vom Wald) auf "vom".
+* Anrede wird für die Preview beim manuellen Bearbeiten nicht beachtet, da für die Anrede nur das Geschlecht notwendig ist.
+* Es werden für die Anrede nur Standard-Anreden beachtet (z.B. Herr, Frau, Mr., Mrs, etc.). Untypische Anreden wie beispielsweise „Hehe“ werden nicht beachtet  aber gespeichert.
+* Ist das Geschlecht „divers“ wird in der Briefanrede nur „Guten Tag [Titel] [Nachname]“ ausgegeben.
