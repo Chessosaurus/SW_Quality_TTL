@@ -189,12 +189,23 @@ public class View extends JFrame {
         setTitelField(String.join(", ", contact.getTitles()));
         setVornameField(contact.getFirstName());
         setNachnameField(contact.getLastName());
-        setGeschlechtComboBox(contact.getGender());
+        setGenderComboBox(contact.getGender());
         setSpracheComboBox(contact.getLanguage());
 
         this.contact = contact;
         previewButton.setEnabled(true);
         confirmButton.setEnabled(true);
+    }
+    private void setGenderComboBox(String gender){
+        switch (gender){
+            case "m": genderComboBox.setSelectedItem("männlich");
+            break;
+            case "f": genderComboBox.setSelectedItem("weiblich");
+            break;
+            case "d": genderComboBox.setSelectedItem("divers");
+            break;
+            default: genderComboBox.setSelectedItem("keine Angabe");
+        }
     }
 
     // Setter for each InputField, accepts String as parameter
