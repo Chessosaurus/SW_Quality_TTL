@@ -13,7 +13,7 @@ In diesem Dokument finden Sie alle Informationen zur Benutzung und Einschränkun
 * Durch klicken auf den "Bestätigen"-Knopf wird der eingegebene Kontakt in den lokalen Speicher geladen und kann bei Bedarf wieder geladen werden.
 
 ---
-### 2. Laden einer Anrede
+### 2. Laden eines Kontaktes
 
 * Durch das klicken auf den "Laden"-Knopf erscheint ein weiteres Fenster, welches das laden von bereits gespeicherten Kontakten.
   
