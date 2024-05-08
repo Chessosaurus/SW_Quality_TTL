@@ -11,15 +11,35 @@ import java.util.*;
  */
 public class InputConverter {
 
-    List<String> maleGenders;
-    List<String> femaleGenders;
-    List<String> diversGenders;
+    private enum Salutations {
+        HERR("Herr","de","m"),
+        FRAU("Frau","de","f"),
+        MR("Mr","en","m"),
+        MR_("Mr.","en","m"),
+        MISTER("Mister","en","m"),
+        MRS("Mrs", "en","f"),
+        MRS_("Mrs.","en","f"),
+        MME("Mme","en","f"),
+        MME_("Mme.","en","f"),
+        MX("Mx","en","d"),
+        MX_("Mx.","en","d"),
+        DEFAULT("","de","keine Angabe"),
+        ;
+
+        Salutations(String salutation, String language, String gender) {
+            this.salutation = salutation;
+            this.language = language;
+            this.gender = gender;
+        }
+
+        final String salutation;
+        final String language;
+        final String gender;
+    }
+
     List<String> titles;
-    List<String> german;
-    List<String> english;
     List<String> prefixes;
     List<String> connectors;
-    List<String> salutation;
 
     /**
      * Constructor for InputConverter. Initializes lists with predefined values for genders, titles, languages,
@@ -28,24 +48,12 @@ public class InputConverter {
      */
     public InputConverter() {
         //Initializing Prerequisites
-        String[] maleInitValues = {"Herr", "Mr.", "Mr", "Mister"};
-        String[] femaleInitValues = {"Frau", "Mrs.", "Mrs", "Mme.", "Mme"};
-        String[] diversInitValues = {"Mx.", "Mx"};
         String[] titlesInitValues = {"Prof.", "Dr.", "Professor", "Doktor", "Dr.-Ing.", "Dipl.-Ing.", "Dr.-Ing."};
-        String[] germanLanguage = {"Frau", "Herr"};
-        String[] englishLanguage = {"Mr.", "Mr", "Mister", "Mrs.", "Mrs", "Mme.", "Mme", "Mx.", "Mx"};
         String[] prefixesValueInit = {"van", "von", "der", "de", "y"};
         String[] connectorsValueInit = {"von", "vom"};
-        String[] salutationValueInit = {"Herr", "Mr.", "Mr", "Mister", "Frau", "Mrs.", "Mrs", "Mme.", "Mme"};
-        maleGenders = Arrays.asList(maleInitValues);
-        femaleGenders = Arrays.asList(femaleInitValues);
-        diversGenders = Arrays.asList(diversInitValues);
         titles = new ArrayList<>(Arrays.asList(titlesInitValues));
-        german = Arrays.asList(germanLanguage);
-        english = Arrays.asList(englishLanguage);
         prefixes = Arrays.asList(prefixesValueInit);
         connectors = Arrays.asList(connectorsValueInit);
-        salutation = Arrays.asList(salutationValueInit);
     }
 
     /**
@@ -74,9 +82,10 @@ public class InputConverter {
 
         Contact contact = new Contact();
         if (splittedInput.size() != 1) {
-            contact.setSalutation(findSalutation(splittedInput.getFirst()));
-            contact.setGender(findGender(splittedInput.getFirst()));
-            contact.setLanguage(findLanguage(splittedInput.getFirst()));
+            Salutations salutation = findSalutation(splittedInput.getFirst());
+            contact.setGender(salutation.gender);
+            contact.setSalutation(salutation.salutation);
+            contact.setLanguage(salutation.language);
             contact.setTitles(findTitles(splittedInput));
 
             removeNonNameEntries(splittedInput, contact);
@@ -93,38 +102,17 @@ public class InputConverter {
     }
 
 
-    private String findSalutation(String input) {
-        if (salutation.contains(input)) return input;
-        else return "";
-    }
-
-    /**
-     * Determines the gender based on a given input string by checking it against predefined lists.
-     * <p>
-     *
-     * @param input The string part to be analyzed for gender.
-     * @return A single character string representing male ('m'), female ('f'), or undetermined ('x').
-     */
-    public String findGender(String input) {
-        if (maleGenders.contains(input)) return "m";
-        else if (femaleGenders.contains(input)) return "f";
-        else if (diversGenders.contains(input)) return "d";
-        else return "keine Angabe";
+    private Salutations findSalutation(String firstElement) {
+        for(Salutations salutation : Salutations.values()) {
+            if (salutation.salutation.equals(firstElement)) {
+                return salutation;
+            }
+        }
+        return Salutations.DEFAULT;
     }
 
 
-    /**
-     * Determines the language from a given input string based on predefined language identifiers.
-     * <p>
-     *
-     * @param input input The string part to be analyzed for language.
-     * @return The ISO code for the detected language, or 'undefined' if not found.
-     */
-    public String findLanguage(String input) {
-        if (german.contains(input)) return "de";
-        else if (english.contains(input)) return "en";
-        else return "undefined";
-    }
+
 
     /**
      * Parses an array of string inputs to extract and separate potential firstnames and lastnames.
@@ -203,11 +191,10 @@ public class InputConverter {
      * @return true if the string matches a known gender or title, false otherwise.
      */
     private boolean isGenderOrTitle(String part) {
-        return maleGenders.contains(part)
-                || femaleGenders.contains(part)
-                || diversGenders.contains(part)
-                || titles.contains(part);
-
+        for(Salutations salutations : Salutations.values()) {
+            if (salutations.salutation.equals(part))return true;
+        }
+        return titles.contains(part);
     }
 
     /**
