@@ -23,4 +23,16 @@ In diesem Dokument finden Sie alle Informationen zur Benutzung und Einschränkun
 
 ---
 
-## Einschränkungen
+## Zusätzliche Features und Einschränkungen
+##Zusätzliche Features
+* Spracherkennung anhand von deutscher oder englischer Anrede.
+* Briefanrede in Deutsch und Englisch verfügbar.
+* Persistente Datenhaltung nach schließen der Applikation.
+* Briefanrede wird in Englisch und Deutsch gespeichert.
+* Nachträgliche Datenbearbeitung ist möglich.
+* Umgang mit mehr als 2 Fachtiteln möglich.
+* Mehr als 2 Vornamen möglich und werden durch Bindestrich verknüpft. Das letzte Wort wird als Nachname angesehen.
+
+---
+## Einschränkungnen
+* Limitation von Nachnamen Verbindungen (z.B. Freiherr vom Wald) auf "vom".
