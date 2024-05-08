@@ -8,7 +8,7 @@ In diesem Dokument finden Sie alle Informaitonen zur Benutzung und Einschränkun
 
 * In dem Eingabefeld oben links kann eine Anrede (z.B. "Herr Prof. Dr. Max Mustermann") eingegeben werden. 
 * Beim klicken auf den "Eingabe"-Knopf wird dann der eingegebene Text in seine Bestandteile aufgeteilt und in den dafür vorgesehenen Ausgabe-Textfeldern aufgeführt. Je nach Bedarf können in diesen Ausgabe-Textfeldern dann Anpassungen vorgenommen werden.
-* Beim anschließenden klicekn auf den "Preview"-Knopf wird eine Briefanreden (z.B. "Sehr geehrter Herr Prof. Hahn,") auf Basis der eingegebenen Daten erzeugt.
+* Beim anschließenden klicken auf den "Preview"-Knopf wird eine Briefanreden (z.B. "Sehr geehrter Herr Prof. Hahn,") auf Basis der eingegebenen Daten erzeugt.
 * Durch klicken auf den "Zurücksetzten"-Knopf lässt sich die Eingabe zurücksetzten.
 * Durch klicken auf den "Bestätigen"-Knopf wird der eingegebene Kontakt in den lokalen Speicher geladen und kann bei Bedarf wieder geladen werden.
 
