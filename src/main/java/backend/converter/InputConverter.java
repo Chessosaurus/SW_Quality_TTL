@@ -190,11 +190,11 @@ public class InputConverter {
      * @param part The string to check against known genders and titles.
      * @return true if the string matches a known gender or title, false otherwise.
      */
-    private boolean isGenderOrTitle(String part) {
+    private boolean isGender (String part) {
         for(Salutations salutations : Salutations.values()) {
             if (salutations.salutation.equals(part))return true;
         }
-        return titles.contains(part);
+        return false;
     }
 
     /**
@@ -221,9 +221,7 @@ public class InputConverter {
                 //determine a more complex title if existent
                 i = findComplexTitle(input, generatedTitles, i, tempTitle);
             } else if ((input.get(i).matches("[a-zA-Z.]+\\.")
-                    && !maleGenders.contains(input.get(i))
-                    && !diversGenders.contains(input.get(i))
-                    && !femaleGenders.contains(input.get(i))
+                    && !isGender(input.get(i))
                     || titles.contains(input.get(i)))) {
                 //check if the current potential title is not a salutation and the title ends with a '.'
                 generatedTitles.add(input.get(i));
@@ -277,5 +275,3 @@ public class InputConverter {
         inputList.removeIf(nonNameEntries2::contains);
     }
 }
-
-
