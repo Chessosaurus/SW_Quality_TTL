@@ -4,6 +4,7 @@ import backend.converter.InputConverter;
 import backend.converter.SalutationBuilder;
 import backend.model.Contact;
 import frontend.View;
+
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ public class ContactController {
     DatabaseConnection databaseConnection = new DatabaseConnection();
     InputConverter contactConverter = new InputConverter();
 
-    public ContactController(){
+    public ContactController() {
         View home = new View(this);
     }
 
@@ -60,7 +61,7 @@ public class ContactController {
         SalutationBuilder.createSalutation(contact);
     }
 
-    public void addNewTitle (String title) {
+    public void addNewTitle(String title) {
         contactConverter.addTitle(title);
     }
 }

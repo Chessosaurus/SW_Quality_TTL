@@ -22,6 +22,7 @@ public class View extends JFrame {
     private Contact contact;
     JButton previewButton;
     JButton confirmButton;
+
     public View(ContactController contactController) {
         setTitle("Kontaktsplitter");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -107,7 +108,7 @@ public class View extends JFrame {
         loadDataButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new SecondView(View.this,contactController); // New Instance of SecondView
+                new SecondView(View.this, contactController); // New Instance of SecondView
             }
         });
         inputButton.addActionListener(new ActionListener() {
@@ -150,14 +151,13 @@ public class View extends JFrame {
         });
         previewButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e)
-            {
+            public void actionPerformed(ActionEvent e) {
                 contact.setSalutation(salutationField.getText());
                 contact.setTitles(Arrays.asList(titleField.getText().split(", ")));
                 contact.setFirstName(firstnameField.getText());
                 contact.setLastName(lastnameField.getText());
 
-                if(genderComboBox.getSelectedItem().toString().equals("männlich")) {
+                if (genderComboBox.getSelectedItem().toString().equals("männlich")) {
                     contact.setGender("m");
                 } else if (genderComboBox.getSelectedItem().toString().equals("weiblich")) {
                     contact.setGender("f");
@@ -167,9 +167,9 @@ public class View extends JFrame {
                     contact.setGender(genderComboBox.getSelectedItem().toString());
                 }
 
-                if(languageComboBox.getSelectedItem().toString().equals("Englisch")){
+                if (languageComboBox.getSelectedItem().toString().equals("Englisch")) {
                     contact.setLanguage("en");
-                } else if (languageComboBox.getSelectedItem().toString().equals("Deutsch")){
+                } else if (languageComboBox.getSelectedItem().toString().equals("Deutsch")) {
                     contact.setLanguage("de");
                 } else {
                     contact.setLanguage(languageComboBox.getSelectedItem().toString());
@@ -184,7 +184,7 @@ public class View extends JFrame {
         setVisible(true);
     }
 
-    public void setContact(Contact contact){
+    public void setContact(Contact contact) {
         setAnredeField(contact.getSalutation());
         setTitelField(String.join(", ", contact.getTitles()));
         setVornameField(contact.getFirstName());
@@ -196,15 +196,20 @@ public class View extends JFrame {
         previewButton.setEnabled(true);
         confirmButton.setEnabled(true);
     }
-    private void setGenderComboBox(String gender){
-        switch (gender){
-            case "m": genderComboBox.setSelectedItem("männlich");
-            break;
-            case "f": genderComboBox.setSelectedItem("weiblich");
-            break;
-            case "d": genderComboBox.setSelectedItem("divers");
-            break;
-            default: genderComboBox.setSelectedItem("keine Angabe");
+
+    private void setGenderComboBox(String gender) {
+        switch (gender) {
+            case "m":
+                genderComboBox.setSelectedItem("männlich");
+                break;
+            case "f":
+                genderComboBox.setSelectedItem("weiblich");
+                break;
+            case "d":
+                genderComboBox.setSelectedItem("divers");
+                break;
+            default:
+                genderComboBox.setSelectedItem("keine Angabe");
         }
     }
 
@@ -232,7 +237,8 @@ public class View extends JFrame {
     public void setSpracheComboBox(String value) {
         languageComboBox.setSelectedItem(value);
     }
-    public void clearFields(){
+
+    public void clearFields() {
         setAnredeField("");
         setTitelField("");
         setVornameField("");

@@ -12,18 +12,18 @@ import java.util.*;
 public class InputConverter {
 
     private enum Salutations {
-        HERR("Herr","de","m"),
-        FRAU("Frau","de","f"),
-        MR("Mr","en","m"),
-        MR_("Mr.","en","m"),
-        MISTER("Mister","en","m"),
-        MRS("Mrs", "en","f"),
-        MRS_("Mrs.","en","f"),
-        MME("Mme","en","f"),
-        MME_("Mme.","en","f"),
-        MX("Mx","en","d"),
-        MX_("Mx.","en","d"),
-        DEFAULT("","de","keine Angabe"),
+        HERR("Herr", "de", "m"),
+        FRAU("Frau", "de", "f"),
+        MR("Mr", "en", "m"),
+        MR_("Mr.", "en", "m"),
+        MISTER("Mister", "en", "m"),
+        MRS("Mrs", "en", "f"),
+        MRS_("Mrs.", "en", "f"),
+        MME("Mme", "en", "f"),
+        MME_("Mme.", "en", "f"),
+        MX("Mx", "en", "d"),
+        MX_("Mx.", "en", "d"),
+        DEFAULT("", "de", "keine Angabe"),
         ;
 
         Salutations(String salutation, String language, String gender) {
@@ -47,7 +47,7 @@ public class InputConverter {
      * <p>
      */
     public InputConverter() {
-        String[] titlesInitValues = {"Prof.", "Dr.", "Professor", "Doktor", "Dr.-Ing.", "Dipl.-Ing.", "Dr.-Ing.", "BA", "Bachelor","BSc","Master","MA","MSc"};
+        String[] titlesInitValues = {"Prof.", "Dr.", "Professor", "Doktor", "Dr.-Ing.", "Dipl.-Ing.", "Dr.-Ing.", "BA", "Bachelor", "BSc", "Master", "MA", "MSc"};
         String[] prefixesValueInit = {"van", "von", "der", "de"};
         String[] connectorsValueInit = {"vom"};
         titles = new ArrayList<>(Arrays.asList(titlesInitValues));
@@ -62,7 +62,7 @@ public class InputConverter {
      * @param newTitle The title to be added.
      */
     public void addTitle(String newTitle) {
-        if (!titles.contains(newTitle)){
+        if (!titles.contains(newTitle)) {
             this.titles.add(newTitle);
         }
     }
@@ -102,15 +102,13 @@ public class InputConverter {
 
 
     private Salutations findSalutation(String firstElement) {
-        for(Salutations salutation : Salutations.values()) {
+        for (Salutations salutation : Salutations.values()) {
             if (salutation.salutation.equals(firstElement)) {
                 return salutation;
             }
         }
         return Salutations.DEFAULT;
     }
-
-
 
 
     /**
@@ -189,9 +187,9 @@ public class InputConverter {
      * @param part The string to check against known genders and titles.
      * @return true if the string matches a known gender or title, false otherwise.
      */
-    private boolean isGender (String part) {
-        for(Salutations salutations : Salutations.values()) {
-            if (salutations.salutation.equals(part))return true;
+    private boolean isGender(String part) {
+        for (Salutations salutations : Salutations.values()) {
+            if (salutations.salutation.equals(part)) return true;
         }
         return false;
     }

@@ -5,23 +5,17 @@ import database.DataBaseController;
 import database.DatabaseMock;
 
 import java.util.List;
-import java.util.Optional;
 
-public class DatabaseConnection{
+
+public class DatabaseConnection {
     DataBaseController db;
-    public DatabaseConnection(){
+
+    public DatabaseConnection() {
         db = new DatabaseMock();
-    }
-    public Optional<Contact> getContactWithId(int id) {
-        return db.getContactWithId(id);
     }
 
     public void addContact(Contact contact) {
         db.addContact(contact);
-    }
-
-    public void updateContact(Contact updateContact) {
-        db.updateContact(updateContact);
     }
 
     public List<Contact> getAllContacts() {

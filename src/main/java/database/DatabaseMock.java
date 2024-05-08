@@ -17,28 +17,12 @@ public class DatabaseMock implements DataBaseController {
         this.csvFilePath = "src/main/java/database/data.csv";
         nextId = getIdOfLastEntry() + 1;
     }
-    /**
-     * Searches the CSV File for a Contact
-     * <p>
-     * This Method always returns a Value and never null
-     * @param id id of the contact to search for
-     * @return Optional.of(Contact) or Optional.empty()
-     */
-    @Override
-    public Optional<Contact> getContactWithId(int id) {
-        List<Contact> contacts = getAllContacts();
-        for (Contact contact : contacts) {
-            if (contact.getId() == id) {
-                return Optional.of(contact);
-            }
-        }
-        CustomLogger.warning("Contact with id " + id + " not found");
-        return Optional.empty();
-    }
+
     /**
      * Adds or updates a Contact to the CSV File
      * <p>
      * If the Contact exists already it instead updates the contact
+     *
      * @param contact The contact to add to the Database
      */
     @Override
@@ -57,11 +41,13 @@ public class DatabaseMock implements DataBaseController {
             }
         }
     }
+
     /**
      * Updates an entry in the CSV File
      * <p>
      * If there is no user with the given id, nothing happens
-     * @param  updateContact  the contact that needs its values updates
+     *
+     * @param updateContact the contact that needs its values updates
      */
     @Override
     public void updateContact(Contact updateContact) {
@@ -80,10 +66,12 @@ public class DatabaseMock implements DataBaseController {
             CustomLogger.error("Error while reading file: " + csvFilePath + "\t to update contact" + updateContact.getId());
         }
     }
+
     /**
      * Searches the CSV for all Contacts
      * <p>
      * This Method always returns a List
+     *
      * @return List<Contact> Contains all values of the CSV File
      */
     @Override
@@ -123,7 +111,7 @@ public class DatabaseMock implements DataBaseController {
         String language = parts[5];
         String salutation = parts[6];
         String letterSalutation = parts[7];
-        return new Contact(id, firstName, lastName, titles, gender, language, salutation,letterSalutation);
+        return new Contact(id, firstName, lastName, titles, gender, language, salutation, letterSalutation);
     }
 
     private int getIdOfLastEntry() {

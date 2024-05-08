@@ -13,7 +13,7 @@ public class Contact {
     String salutation;
     String letterSalutation;
 
-    public Contact(){
+    public Contact() {
         this.firstName = "";
         this.lastName = "";
         this.titles = new ArrayList<>();
@@ -22,16 +22,7 @@ public class Contact {
         this.salutation = "";
     }
 
-    public Contact(String firstName, String lastName, List<String> title, String gender, String language, String salutation) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.titles = title;
-        this.gender = gender;
-        this.language = language;
-        this.salutation = salutation;
-    }
-
-    public Contact(int id,String firstName, String lastName, List<String> title, String gender, String language, String salutation, String letterSalutation) {
+    public Contact(int id, String firstName, String lastName, List<String> title, String gender, String language, String salutation, String letterSalutation) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -105,16 +96,6 @@ public class Contact {
     public String getLetterSalutation() {
         return this.letterSalutation;
     }
-
-    public void addTitle(String title) {
-        this.titles.add(title);
-    }
-
-    public void removeTitle(String title) {
-        this.titles.remove(title);
-    }
-
-
 
 
 }

@@ -20,6 +20,7 @@ public class SecondView extends JFrame {
     private List<Contact> contacts;
     JTable table;
     View view;
+
     public SecondView(View view, ContactController contactController) {
         this.contactController = contactController;
         setTitle("Laden von Kontakten");
@@ -92,7 +93,7 @@ public class SecondView extends JFrame {
         public Object getValueAt(int row, int column) {
             return switch (column) {
                 case 0 -> contacts.get(row).getSalutation();
-                case 1 -> String.join(" ",contacts.get(row).getTitles());
+                case 1 -> String.join(" ", contacts.get(row).getTitles());
                 case 2 -> contacts.get(row).getFirstName();
                 case 3 -> contacts.get(row).getLastName();
                 case 4 -> contacts.get(row).getGender();

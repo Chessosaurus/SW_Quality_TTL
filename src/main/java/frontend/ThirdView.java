@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 public class ThirdView extends JFrame {
     ContactController contactController;
     View view;
+
     public ThirdView(View view, ContactController contactController) {
         // Set up the frame
         this.contactController = contactController;
