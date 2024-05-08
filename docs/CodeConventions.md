@@ -8,10 +8,6 @@ Um die Codebasis einheitlich zu gestalten, werden Code Conventions festgelegt. D
 Als Versionsverwaltungssystem wird Github verwendet. Dafür wird ein Repository erstellt, zu dem alle Gruppenmitglieder Zugang haben.
 Folgende Vereinbahrungen wurden getroffen:
 * Der `main`-Branch wird als default-branch festlegt.
-* Es stehen 3 Feature-Branches zur Verfügung:
-    * `BackEnd` für die Entwicklung von Backend-Funktionalitäten
-    * `FrontEnd` für die Entwicklung von Frontend-Funktionalitäten
-    * `documentation` für die Erstellung der geforderten Dokumentation
 * Bei Bedarf können weitere Feature-Branches erstellt werden
 * In den `main`-Branch wird nur lauffähiger Code gemergt, der von min. 1 weiteren Person einem Review unterzogen wurde
 * zusätzlich erstellte Feature-Branches werden nicht direkt in den `main`-Branch gemergt, sondern in einen der betreffenden 3 Feature-Branches
@@ -20,7 +16,6 @@ Folgende Vereinbahrungen wurden getroffen:
 Für das Schreiben von Code werden folgende Vereinbahrungen getroffen:
 * Sprache im Code: Englisch (commit-messages dürfen auch auf deutsch sein)
 * Packages sollen Klassen anhand ihrer Funktionalität klassifizieren
-* Kommentare sollen so sparsam wie möglich verwendet werden und im Zweifel lieber auf deutsch
 * Code sollte so selbsterklärend wie möglich sein, um so wenig Kommentare wie möglich verwenden zu müssen
 * Methodennamen sollen (wo möglich) in folgendem Stil gewählt werden:
     * Verb, das die Aktion der Methode beschreibt
@@ -28,7 +23,7 @@ Für das Schreiben von Code werden folgende Vereinbahrungen getroffen:
 
 Beispiel:
 ``
-private void changeSurName()``
+private void changeLastName()``
 ## Java
 Da die Anwendung in Java geschrieben wird, wird sich zusätzlich noch an die Java Code Conventions gehalten.
 Diese können über folgenden Link abgerufen werden: https://www.oracle.com/technetwork/java/codeconventions-150003.pdf

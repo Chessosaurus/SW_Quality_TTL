@@ -6,7 +6,7 @@ möchte ich, dass das System die Anrede einer Person automatisch erkennt und dar
 damit ich korrekte Ansprachen in Kommunikationen nutzen kann.
 
 #### Akzeptanzkriterien:
-* Wenn eine Anrede wie „Herr“, „Frau“, „Dr.“, „Prof.“ eingegeben wird, soll das System das Geschlecht entsprechend zuweisen.
+* Wenn eine Anrede wie „Herr“, „Frau“ eingegeben wird, soll das System das Geschlecht entsprechend zuweisen.
 * Das System bietet ein manuelles Auswahlmenü für Geschlecht, wenn die automatische Zuordnung unsicher ist.
 * Die Anrede und das Geschlecht werden in separaten Feldern in der Datenbank gespeichert.
 
@@ -40,8 +40,7 @@ damit die Daten korrekt im System angelegt werden können.
 
 #### Akzeptanzkriterien:
 * Nutzer können jederzeit manuelle Korrekturen an Anrede, Namen und Titeln vornehmen.
-* Das System speichert manuelle Korrekturen und lernt daraus für zukünftige automatische Eingaben.
-* Neue Titel können durch Nutzer hinzugefügt und in der Datenbank gespeichert werden.
+* Das System speichert manuelle Korrekturen, nachdem die Korrektur bestätigt wurde.
 
 
 ### User Story 5: Doppelnamen-Erkennung und -Formatierung
