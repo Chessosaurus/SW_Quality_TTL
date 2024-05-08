@@ -7,10 +7,10 @@ Um die Codebasis einheitlich zu gestalten, werden Code Conventions festgelegt. D
 ## Github
 Als Versionsverwaltungssystem wird Github verwendet. Dafür wird ein Repository erstellt, zu dem alle Gruppenmitglieder Zugang haben.
 Folgende Vereinbahrungen wurden getroffen:
-* Der `main`-Branch wird als default-branch festlegt.
+* Der `master`-Branch wird als default-branch festlegt.
 * Bei Bedarf können weitere Feature-Branches erstellt werden
-* In den `main`-Branch wird nur lauffähiger Code gemergt, der von min. 1 weiteren Person einem Review unterzogen wurde
-* zusätzlich erstellte Feature-Branches werden nicht direkt in den `main`-Branch gemergt, sondern in einen der betreffenden 3 Feature-Branches
+* In den `master`-Branch wird nur lauffähiger Code gemergt, der von min. 1 weiteren Person einem Review unterzogen wurde
+* zusätzlich erstellte Feature-Branches werden nicht direkt in den `master`-Branch gemergt, sondern in einen der betreffenden 3 Feature-Branches
 
 ## Clean Code
 Für das Schreiben von Code werden folgende Vereinbahrungen getroffen:
