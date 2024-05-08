@@ -27,6 +27,13 @@ public abstract class SalutationBuilder {
         contact.setLetterSalutation(baseSalutation + " " + contact.getLastName());
     }
 
+    /**
+     * Generates a German salutation based on the gender and title of the contact.
+     *
+     * @param gender The gender of the contact.
+     * @param title  The title of the contact, if any.
+     * @return A string containing the formal German salutation.
+     */
     private static String createGermanSalutation(String gender, String title) {
         return switch (gender) {
             case "f" -> "Sehr geehrte Frau" + formatTitle(title);
@@ -35,6 +42,13 @@ public abstract class SalutationBuilder {
         };
     }
 
+    /**
+     * Generates an English salutation based on the gender and title of the contact.
+     *
+     * @param gender The gender of the contact.
+     * @param title  The title of the contact, if any.
+     * @return A string containing the formal English salutation.
+     */
     private static String createEnglishSalutation(String gender, String title) {
         return switch (gender) {
             case "f" -> "Dear Mrs" + formatTitle(title);
@@ -44,6 +58,14 @@ public abstract class SalutationBuilder {
         };
     }
 
+    /**
+     * Formats a title to include a proper salutation prefix. If a specific title like "Prof."
+     * or "Dr." is found, it adds the correct abbreviation. Otherwise, it appends the title
+     * as provided.
+     *
+     * @param title The title to be formatted.
+     * @return A formatted title string suitable for salutations.
+     */
     private static String formatTitle(String title) {
         if (title.isEmpty()) {
             return "";

@@ -11,6 +11,9 @@ import java.util.*;
  */
 public class InputConverter {
 
+    /**
+     * Enumerates common salutations across multiple languages, associating each with a specific gender.
+     */
     private enum Salutations {
         HERR("Herr", "de", "m"),
         FRAU("Frau", "de", "f"),
@@ -19,6 +22,10 @@ public class InputConverter {
         MISTER("Mister", "en", "m"),
         MRS("Mrs", "en", "f"),
         MRS_("Mrs.", "en", "f"),
+        MISSES("Misses", "en", "f"),
+        MISSES_("Miss", "en", "f"),
+        MSS("Ms", "en", "f"),
+        MS_("Ms.", "en", "f"),
         MME("Mme", "en", "f"),
         MME_("Mme.", "en", "f"),
         MX("Mx", "en", "d"),
@@ -73,7 +80,7 @@ public class InputConverter {
      * <p>
      *
      * @param input The string input to be converted.
-     * @return A Contact object populated with the extracted details from the input.
+     * @return A {@link Contact} object populated with the extracted details from the input.
      */
     public Contact convert(String input) {
 
@@ -256,8 +263,11 @@ public class InputConverter {
     }
 
     /**
-     * @param inputList
-     * @param contact
+     * Removes entries from the input list that are recognized as non-name parts such as salutations, titles,
+     * genders, and languages, which are stored in the provided {@link Contact} object.
+     *
+     * @param inputList a list of string inputs potentially containing non-name parts.
+     * @param contact   the {@link Contact} object where recognized parts are stored.
      */
     private void removeNonNameEntries(List<String> inputList, Contact contact) {
         Set<String> nonNameEntries = new HashSet<>();
