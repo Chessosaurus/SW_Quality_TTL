@@ -13,7 +13,6 @@ public class ContactController {
 
     DatabaseConnection databaseConnection = new DatabaseConnection();
     InputConverter contactConverter = new InputConverter();
-    SalutationBuilder salutationBuilder = new SalutationBuilder();
 
     public ContactController(){
         View home = new View(this);
@@ -37,9 +36,7 @@ public class ContactController {
      */
     public Contact convertToContact(String input) throws WrongInputException {
         checkInput(input);
-        Contact contact = contactConverter.convert(input);
-        salutationBuilder.createSalutation(contact);
-        return contact;
+        return contactConverter.convert(input);
     }
 
     /**
@@ -60,7 +57,7 @@ public class ContactController {
      * @param contact
      */
     public void updateSalutation(Contact contact) {
-        salutationBuilder.createSalutation(contact);
+        SalutationBuilder.createSalutation(contact);
     }
 
     public void addNewTitle (String title) {

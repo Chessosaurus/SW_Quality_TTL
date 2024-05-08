@@ -22,7 +22,7 @@ public class UnitTesting {
                 .withLastName("Berger")
                 .withGender("f")
                 .withLanguage("de")
-                .withTitles(new ArrayList<String>())
+                .withTitles(new ArrayList<>())
                 .withSalutation("Frau")
                 .withLetterSalutation("Sehr geehrte Frau Berger")
                 .matches(actual);
@@ -51,7 +51,7 @@ public class UnitTesting {
                 .withFirstName("Heinrich")
                 .withLastName("Freiherr vom Wald")
                 .withGender("keine Angabe")
-                .withLanguage("undefined")
+                .withLanguage("de")
                 .withTitles(List.of("Professor"))
                 .withSalutation("")
                 .withLetterSalutation("Guten Tag Prof. Freiherr vom Wald")
@@ -124,7 +124,7 @@ public class UnitTesting {
                 .withFirstName("Winfried")
                 .withLastName("Russwurm")
                 .withGender("keine Angabe")
-                .withLanguage("undefined")
+                .withLanguage("de")
                 .withTitles(List.of("Dr."))
                 .withSalutation("")
                 .withLetterSalutation("Guten Tag Dr. Russwurm")
@@ -147,8 +147,8 @@ public class UnitTesting {
 
 
 
-    class ContactMatcher {
-        protected WithFirstName withFirstName(String firstName) {
+    static class ContactMatcher {
+        private WithFirstName withFirstName(String firstName) {
             Contact c = new Contact();
             c.setFirstName(firstName);
             return new WithFirstName(c);
