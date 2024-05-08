@@ -22,9 +22,9 @@ public abstract class SalutationBuilder {
         } else if (contact.getLanguage().equals("en")) {
             baseSalutation = createEnglishSalutation(contact.getGender(), title);
         } else if (!title.isEmpty()) {
-            baseSalutation = "Guten Tag" + formatTitle(title);
+            baseSalutation = "Guten Tag" + formatTitle(title) + contact.getFirstName();
         }
-            contact.setLetterSalutation(baseSalutation + " " + contact.getLastName());
+        contact.setLetterSalutation(baseSalutation + " " + contact.getLastName());
     }
 
     private static String createGermanSalutation(String gender, String title) {

@@ -47,7 +47,7 @@ public class InputConverter {
      * <p>
      */
     public InputConverter() {
-        String[] titlesInitValues = {"Prof.", "Dr.", "Professor", "Doktor", "Dr.-Ing.", "Dipl.-Ing.", "Dr.-Ing."};
+        String[] titlesInitValues = {"Prof.", "Dr.", "Professor", "Doktor", "Dr.-Ing.", "Dipl.-Ing.", "Dr.-Ing.", "BA", "Bachelor","BSc","Master","MA","MSc"};
         String[] prefixesValueInit = {"van", "von", "der", "de"};
         String[] connectorsValueInit = {"vom"};
         titles = new ArrayList<>(Arrays.asList(titlesInitValues));
